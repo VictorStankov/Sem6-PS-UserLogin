@@ -28,5 +28,18 @@ namespace UserLogin
             _testUsers[1] = new User("student_1", "asddsa", 2, (int)UserRoles.STUDENT);
             _testUsers[2] = new User("student_2", "asddsa", 3, (int)UserRoles.STUDENT);
         }
+
+        static public User IsUserPassCorrect(String username, String password)
+        {
+            ResetTestUserData();
+
+            for (int i = 0; i < _testUsers.Length; i++)
+            {
+                if (username == _testUsers[i].username && password == _testUsers[i].password)
+                    return _testUsers[i];
+            }
+
+            return null;
+        }
     }
 }

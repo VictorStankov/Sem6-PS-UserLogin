@@ -34,7 +34,14 @@ namespace UserLogin
                 return false;
             }
 
-            user = UserData.TestUsers[0];
+            user = UserData.IsUserPassCorrect(username, password);
+
+            if (user == null)
+            {
+                errorMessage = "User not found!";
+                currentUserRole = UserRoles.ANONYMOUS;
+                return false;
+            }
 
             currentUserRole = (UserRoles)user.role;
             return true;
