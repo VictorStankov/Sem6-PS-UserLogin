@@ -34,7 +34,7 @@ namespace UserLogin
                 return false;
             }
 
-            user = UserData.TestUser;
+            user = UserData.TestUsers[0];
 
             currentUserRole = (UserRoles)user.role;
             return true;

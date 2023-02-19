@@ -8,25 +8,25 @@ namespace UserLogin
 {
     static class UserData
     {
-        public static User TestUser
+        public static User[] TestUsers
         {
             get
             {
                 ResetTestUserData();
-                return _testUser;
+                return _testUsers;
             }
             set { }
         }
-        static private User _testUser;
+        static private User[] _testUsers;
 
         static private void ResetTestUserData()
         {
-            if (_testUser == null)
-                _testUser = new User();
+            if (_testUsers == null)
+                _testUsers = new User[3];
 
-            _testUser.username = _testUser.password = "admin";
-            _testUser.faculty_num = 123456;
-            _testUser.role = (int)UserRoles.ADMIN;
+            _testUsers[0] = new User("admin", "admin", 1, (int)UserRoles.ADMIN);
+            _testUsers[1] = new User("student_1", "asddsa", 2, (int)UserRoles.STUDENT);
+            _testUsers[2] = new User("student_2", "asddsa", 3, (int)UserRoles.STUDENT);
         }
     }
 }
