@@ -24,6 +24,15 @@ namespace UserLogin
         {
             get; set;
         }
+
+        public User() { }
+        public User(String username, String password, Int32 faculty_num, Int32 role)
+        {
+            this.username = username;
+            this.password = password;
+            this.faculty_num = faculty_num;
+            this.role = role;
+        }
     }
 
     
