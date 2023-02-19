@@ -10,11 +10,19 @@ namespace UserLogin
     {
         static void Main(string[] args)
         {
-            LoginValidation val = new LoginValidation();
+            String username, password;
 
-            if (val.ValidateUserInput(UserData.TestUser))
-                Console.WriteLine($"{UserData.TestUser.username} {UserData.TestUser.password} " +
-                    $"{UserData.TestUser.faculty_num} {UserData.TestUser.role} \n{LoginValidation.currentUserRole}");
+            Console.Write("Enter username: ");
+            username = Console.ReadLine();
+            Console.Write("Enter password: ");
+            password = Console.ReadLine();
+
+            LoginValidation val = new LoginValidation(username, password);
+
+            User user = null;
+
+            if (val.ValidateUserInput(ref user))
+                Console.WriteLine($"{user.username} {user.password} {user.faculty_num} {user.role} \n{LoginValidation.currentUserRole}");
         }
     }
 }

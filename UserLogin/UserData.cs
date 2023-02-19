@@ -26,7 +26,7 @@ namespace UserLogin
 
             _testUser.username = _testUser.password = "admin";
             _testUser.faculty_num = 123456;
-            _testUser.role = 1;
+            _testUser.role = (int)UserRoles.ADMIN;
         }
     }
 }

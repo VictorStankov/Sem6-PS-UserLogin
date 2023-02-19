@@ -8,14 +8,23 @@ namespace UserLogin
 {
     class LoginValidation
     {
+        private String username, password, errorMessage;
         public static UserRoles currentUserRole
         {
             get; private set;
         }
 
-        public bool ValidateUserInput(User user)
+        public LoginValidation(String username, String password)
         {
-            currentUserRole = UserRoles.ADMIN;
+            this.username = username;
+            this.password = password;
+        }
+
+        public bool ValidateUserInput(ref User user)
+        {
+            user = UserData.TestUser;
+
+            currentUserRole = (UserRoles)user.role;
             return true;
         }
     }
