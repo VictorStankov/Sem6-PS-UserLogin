@@ -22,7 +22,7 @@ namespace UserLogin
             User user = null;
 
             if (val.ValidateUserInput(ref user))
-                Console.WriteLine($"{user.username} {user.password} {user.faculty_num} {user.role} \n{LoginValidation.currentUserRole}");
+                Console.WriteLine($"{user.username} {user.password} {user.faculty_num} {user.role}\n{LoginValidation.currentUserRole}");
         }
     }
 }

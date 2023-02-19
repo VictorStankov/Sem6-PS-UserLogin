@@ -22,6 +22,18 @@ namespace UserLogin
 
         public bool ValidateUserInput(ref User user)
         {
+            if (username.Length < 5)
+            {
+                errorMessage = "Please enter a username longer than 5 characters!";
+                return false;
+            }
+
+            if (password.Length < 5)
+            {
+                errorMessage = "Please enter a password longer than 5 characters!";
+                return false;
+            }
+
             user = UserData.TestUser;
 
             currentUserRole = (UserRoles)user.role;
