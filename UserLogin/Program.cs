@@ -22,7 +22,25 @@ namespace UserLogin
             User user = null;
 
             if (val.ValidateUserInput(ref user))
-                Console.WriteLine($"{user.username} {user.password} {user.faculty_num} {user.role}\n{LoginValidation.currentUserRole}");
+                Console.WriteLine($"{user.username} {user.password} {user.faculty_num} {user.role}");
+            switch (LoginValidation.currentUserRole)
+            {
+                case UserRoles.ADMIN:
+                    Console.WriteLine($"Welcome, {user.username}! Here is the admin panel:");
+                    break;
+                case UserRoles.INSPECTOR:
+                    Console.WriteLine($"Welcome, {user.username}! Here is a list of your tasks:");
+                    break;
+                case UserRoles.PROFESSOR:
+                    Console.WriteLine($"Welcome, {user.username}! These are your most recent emails:");
+                    break;
+                case UserRoles.STUDENT:
+                    Console.WriteLine($"Welcome, student {user.username}! These are your upcoming deadlines:");
+                    break;
+                case UserRoles.ANONYMOUS:
+                    Console.WriteLine($"Welcome! A user with your credentials was not found. Proceeding as guest...");
+                    break;
+            }
         }
     }
 }
