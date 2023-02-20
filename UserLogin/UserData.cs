@@ -8,7 +8,7 @@ namespace UserLogin
 {
     static class UserData
     {
-        public static User[] TestUsers
+        static public User[] TestUsers
         {
             get
             {

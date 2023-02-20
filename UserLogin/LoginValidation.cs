@@ -8,29 +8,34 @@ namespace UserLogin
 {
     class LoginValidation
     {
-        private String username, password, errorMessage;
-        public static UserRoles currentUserRole
+        public delegate void ActionOnError(string errorMsg);
+
+        private String username, password;
+        static public UserRoles currentUserRole
         {
             get; private set;
         }
 
-        public LoginValidation(String username, String password)
+        private ActionOnError _errorfunc;
+
+        public LoginValidation(String username, String password, ActionOnError _errorfunc)
         {
             this.username = username;
             this.password = password;
+            this._errorfunc = _errorfunc;
         }
-
+        
         public bool ValidateUserInput(ref User user)
         {
             if (username.Length < 5)
             {
-                errorMessage = "Please enter a username longer than 5 characters!";
+                _errorfunc("Please enter a username longer than 5 characters!");
                 return false;
             }
 
             if (password.Length < 5)
             {
-                errorMessage = "Please enter a password longer than 5 characters!";
+                _errorfunc("Please enter a password longer than 5 characters!");
                 return false;
             }
 
@@ -38,7 +43,7 @@ namespace UserLogin
 
             if (user == null)
             {
-                errorMessage = "User not found!";
+                _errorfunc("User not found!");
                 currentUserRole = UserRoles.ANONYMOUS;
                 return false;
             }

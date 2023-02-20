@@ -17,12 +17,13 @@ namespace UserLogin
             Console.Write("Enter password: ");
             password = Console.ReadLine();
 
-            LoginValidation val = new LoginValidation(username, password);
+            LoginValidation val = new LoginValidation(username, password, new LoginValidation.ActionOnError(PrintError));
 
             User user = null;
 
             if (val.ValidateUserInput(ref user))
                 Console.WriteLine($"{user.username} {user.password} {user.faculty_num} {user.role}");
+
             switch (LoginValidation.currentUserRole)
             {
                 case UserRoles.ADMIN:
@@ -41,6 +42,11 @@ namespace UserLogin
                     Console.WriteLine($"Welcome! A user with your credentials was not found. Proceeding as guest...");
                     break;
             }
+        }
+
+        static public void PrintError(string errorMsg)
+        {
+            Console.WriteLine($"!!! {errorMsg} !!!");
         }
     }
 }
