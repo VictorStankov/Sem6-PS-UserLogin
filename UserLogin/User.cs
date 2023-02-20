@@ -24,14 +24,24 @@ namespace UserLogin
         {
             get; set;
         }
+        public DateTime created
+        {
+            get; set;
+        }
+        public DateTime validUntil
+        {
+            get; set;
+        }
 
         public User() { }
-        public User(String username, String password, Int32 faculty_num, Int32 role)
+        public User(String username, String password, Int32 faculty_num, Int32 role, DateTime created, DateTime validUntil)
         {
             this.username = username;
             this.password = password;
             this.faculty_num = faculty_num;
             this.role = role;
+            this.created = created;
+            this.validUntil = validUntil;
         }
     }
 

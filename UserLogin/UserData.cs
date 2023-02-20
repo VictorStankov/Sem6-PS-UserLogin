@@ -24,9 +24,9 @@ namespace UserLogin
             if (_testUsers == null)
                 _testUsers = new User[3];
 
-            _testUsers[0] = new User("admin", "admin", 1, (int)UserRoles.ADMIN);
-            _testUsers[1] = new User("student_1", "asddsa", 2, (int)UserRoles.STUDENT);
-            _testUsers[2] = new User("student_2", "asddsa", 3, (int)UserRoles.STUDENT);
+            _testUsers[0] = new User("admin", "admin", 1, (int)UserRoles.ADMIN, DateTime.UtcNow, DateTime.MaxValue);
+            _testUsers[1] = new User("student_1", "asddsa", 2, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue);
+            _testUsers[2] = new User("student_2", "asddsa", 3, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue);
         }
 
         static public User IsUserPassCorrect(String username, String password)

@@ -22,7 +22,8 @@ namespace UserLogin
             User user = null;
 
             if (val.ValidateUserInput(ref user))
-                Console.WriteLine($"{user.username} {user.password} {user.faculty_num} {user.role}");
+                Console.WriteLine($"{user.username} {user.password} {user.faculty_num} {user.role} " +
+                    $"{user.created.ToLocalTime()} {user.validUntil.ToLocalTime()}");
 
             switch (LoginValidation.currentUserRole)
             {
