@@ -33,11 +33,9 @@ namespace UserLogin
         {
             ResetTestUserData();
 
-            for (int i = 0; i < _testUsers.Length; i++)
-            {
-                if (username == _testUsers[i].username && password == _testUsers[i].password)
-                    return _testUsers[i];
-            }
+            foreach (User user in _testUsers)
+                if (username == user.username && password == user.password)
+                    return user;
 
             return null;
         }
