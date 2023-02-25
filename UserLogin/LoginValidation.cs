@@ -7,6 +7,7 @@ namespace UserLogin
         public delegate void ActionOnError(string errorMsg);
 
         private String username, password;
+        public static string currentUserUsername;
         public static UserRoles currentUserRole
         {
             get; private set;
@@ -40,10 +41,14 @@ namespace UserLogin
             if (user == null)
             {
                 _errorfunc("User not found!");
+                currentUserUsername = null;
                 currentUserRole = UserRoles.ANONYMOUS;
                 return false;
             }
 
+            Logger.LogActivity("Login successful");
+
+            currentUserUsername = user.username;
             currentUserRole = (UserRoles)user.role;
             return true;
         }

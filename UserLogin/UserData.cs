@@ -46,6 +46,7 @@ namespace UserLogin
 
         public static void SetUserActiveTo(String username, DateTime date)
         {
+            Logger.LogActivity($"Change expiry date of user '{username}'");
             foreach (User user in _testUsers)
                 if (user.username == username)
                 {
@@ -56,6 +57,7 @@ namespace UserLogin
 
         public static void AssignUserRole(String username, UserRoles role)
         {
+            Logger.LogActivity($"Change role of user '{username}'");
             foreach (User user in _testUsers)
                 if (user.username == username)
                 {
