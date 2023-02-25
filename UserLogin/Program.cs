@@ -21,14 +21,16 @@ namespace UserLogin
 
             User user = null;
 
-            if (val.ValidateUserInput(ref user))
-                Console.WriteLine($"{user.username} {user.password} {user.faculty_num} {user.role} " +
-                    $"{user.created.ToLocalTime()} {user.validUntil.ToLocalTime()}");
+            //if (val.ValidateUserInput(ref user))
+            //    Console.WriteLine($"{user.username} {user.password} {user.faculty_num} {user.role} " +
+            //        $"{user.created.ToLocalTime()} {user.validUntil.ToLocalTime()}");
+
+            val.ValidateUserInput(ref user);
 
             switch (LoginValidation.currentUserRole)
             {
                 case UserRoles.ADMIN:
-                    Console.WriteLine($"Welcome, {user.username}! Here is the admin panel:");
+                    AdminPanel(user);
                     break;
                 case UserRoles.INSPECTOR:
                     Console.WriteLine($"Welcome, {user.username}! Here is a list of your tasks:");
@@ -48,6 +50,68 @@ namespace UserLogin
         static public void PrintError(string errorMsg)
         {
             Console.WriteLine($"!!! {errorMsg} !!!");
+        }
+
+        static private void AdminPanel(User user)
+        {
+            Console.WriteLine($"Welcome, {user.username}! Here is the admin panel:\n0: Exit\n1: Change user's role" +
+                        $"\n2: Change user's expiry date");
+
+            String username;
+            UserRoles role;
+            Char choice = Convert.ToChar(Console.ReadLine());
+            switch (choice)
+            {
+                case '0':
+                    break;
+                case '1':
+                    Console.Write("Enter user's username: ");
+                    username = Console.ReadLine();
+                    if (!UserData.UserExists(username))
+                    {
+                        Console.WriteLine("User does not exist!");
+                        break;
+                    }
+
+                    Console.WriteLine($"\nAvailable Roles:");
+                    foreach (UserRoles a in Enum.GetValues(typeof(UserRoles)))
+                    {
+                        Console.Write($"{a}  ");
+                    }
+
+                    Console.Write("\nEnter new role's name: ");
+                    if (!Enum.TryParse(Console.ReadLine().ToUpper(), out role))
+                    {
+                        Console.WriteLine("Invalid Role Name!");
+                        break;
+                    }
+
+                    UserData.AssignUserRole(username, role);
+                    break;
+                case '2':
+                    Console.Write("Enter user's username: ");
+                    username = Console.ReadLine();
+                    if (!UserData.UserExists(username))
+                    {
+                        Console.WriteLine("User does not exist!");
+                        break;
+                    }
+
+                    Console.WriteLine("Valid Date Format: 2020-12-31 13:00:00");
+                    Console.Write("Enter an expiry date: ");
+
+                    try
+                    {
+                        DateTime expiryDate = DateTime.Parse(Console.ReadLine());
+                        UserData.SetUserActiveTo(username, expiryDate);
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Incorrect date format!");
+                    }
+
+                    break;
+            }
         }
     }
 }

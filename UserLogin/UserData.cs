@@ -39,5 +39,33 @@ namespace UserLogin
 
             return null;
         }
+
+        public static bool UserExists(String username)
+        {
+            foreach (User user in _testUsers)
+                if (username == user.username)
+                    return true;
+            return false;
+        }
+
+        public static void SetUserActiveTo(String username, DateTime date)
+        {
+            foreach (User user in _testUsers)
+                if (user.username == username)
+                {
+                    user.validUntil = date;
+                    break;
+                }
+        }
+
+        public static void AssignUserRole(String username, UserRoles role)
+        {
+            foreach (User user in _testUsers)
+                if (user.username == username)
+                {
+                    user.role = (Int32)role;
+                    break;
+                }
+        }
     }
 }
