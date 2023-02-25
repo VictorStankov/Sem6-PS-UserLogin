@@ -51,7 +51,7 @@ namespace UserLogin
         private static void AdminPanel(User user)
         {
             Console.WriteLine($"Welcome, {user.username}! Here is the admin panel:\n0: Exit\n1: Change user's role" +
-                        "\n2: Change user's expiry date");
+                        "\n2: Change user's expiry date\n3: List registered users");
 
             String username;
             UserRoles role;
@@ -112,6 +112,12 @@ namespace UserLogin
                     {
                         Console.WriteLine("Incorrect date format!");
                     }
+
+                    break;
+                case '3':
+                    Console.WriteLine("Registered users:");
+                    foreach (User temp in UserData.TestUsers)
+                        Console.WriteLine(temp.username);
 
                     break;
             }
