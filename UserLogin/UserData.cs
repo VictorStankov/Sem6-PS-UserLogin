@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace UserLogin
 {
     static class UserData
     {
-        public static User[] TestUsers
+        public static List<User> TestUsers
         {
             get
             {
@@ -13,16 +14,16 @@ namespace UserLogin
             }
             set { }
         }
-        private static User[] _testUsers;
+        private static List<User> _testUsers;
 
         private static void ResetTestUserData()
         {
             if (_testUsers == null)
-                _testUsers = new User[3];
+                _testUsers = new List<User>();
 
-            _testUsers[0] = new User("admin", "admin", 1, (int)UserRoles.ADMIN, DateTime.UtcNow, DateTime.MaxValue);
-            _testUsers[1] = new User("student_1", "asddsa", 2, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue);
-            _testUsers[2] = new User("student_2", "asddsa", 3, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue);
+            _testUsers.Add(new User("admin", "admin", 1, (int)UserRoles.ADMIN, DateTime.UtcNow, DateTime.MaxValue));
+            _testUsers.Add(new User("student_1", "asddsa", 2, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue));
+            _testUsers.Add(new User("student_2", "asddsa", 3, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue));
         }
 
         public static User IsUserPassCorrect(String username, String password)
