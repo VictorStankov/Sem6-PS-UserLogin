@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UserLogin
 {
@@ -16,7 +12,7 @@ namespace UserLogin
         {
             get; set;
         }
-        public Int32 faculty_num
+        public Int32 facultyNum
         {
             get; set;
         }
@@ -34,11 +30,11 @@ namespace UserLogin
         }
 
         public User() { }
-        public User(String username, String password, Int32 faculty_num, Int32 role, DateTime created, DateTime validUntil)
+        public User(String username, String password, Int32 facultyNum, Int32 role, DateTime created, DateTime validUntil)
         {
             this.username = username;
             this.password = password;
-            this.faculty_num = faculty_num;
+            this.facultyNum = facultyNum;
             this.role = role;
             this.created = created;
             this.validUntil = validUntil;

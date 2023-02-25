@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UserLogin
 {
@@ -11,7 +7,7 @@ namespace UserLogin
         public delegate void ActionOnError(string errorMsg);
 
         private String username, password;
-        static public UserRoles currentUserRole
+        public static UserRoles currentUserRole
         {
             get; private set;
         }

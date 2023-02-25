@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UserLogin
 {
@@ -47,20 +43,26 @@ namespace UserLogin
             }
         }
 
-        static public void PrintError(string errorMsg)
+        public static void PrintError(string errorMsg)
         {
             Console.WriteLine($"!!! {errorMsg} !!!");
         }
 
-        static private void AdminPanel(User user)
+        private static void AdminPanel(User user)
         {
             Console.WriteLine($"Welcome, {user.username}! Here is the admin panel:\n0: Exit\n1: Change user's role" +
-                        $"\n2: Change user's expiry date");
+                        "\n2: Change user's expiry date");
 
             String username;
             UserRoles role;
-            Char choice = Convert.ToChar(Console.ReadLine());
-            switch (choice)
+            
+            String choice = Console.ReadLine();
+            if (String.IsNullOrEmpty(choice) || choice.Length > 1)
+            {
+                return;
+            }
+            
+            switch (choice[0])
             {
                 case '0':
                     break;
@@ -80,7 +82,8 @@ namespace UserLogin
                     }
 
                     Console.Write("\nEnter new role's name: ");
-                    if (!Enum.TryParse(Console.ReadLine().ToUpper(), out role))
+                    String role_str = Console.ReadLine();
+                    if (String.IsNullOrEmpty(role_str) || !Enum.TryParse(role_str.ToUpper(), out role))
                     {
                         Console.WriteLine("Invalid Role Name!");
                         break;

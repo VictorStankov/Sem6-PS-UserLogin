@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UserLogin
 {
     static class UserData
     {
-        static public User[] TestUsers
+        public static User[] TestUsers
         {
             get
             {
@@ -17,9 +13,9 @@ namespace UserLogin
             }
             set { }
         }
-        static private User[] _testUsers;
+        private static User[] _testUsers;
 
-        static private void ResetTestUserData()
+        private static void ResetTestUserData()
         {
             if (_testUsers == null)
                 _testUsers = new User[3];
@@ -29,7 +25,7 @@ namespace UserLogin
             _testUsers[2] = new User("student_2", "asddsa", 3, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue);
         }
 
-        static public User IsUserPassCorrect(String username, String password)
+        public static User IsUserPassCorrect(String username, String password)
         {
             ResetTestUserData();
 
