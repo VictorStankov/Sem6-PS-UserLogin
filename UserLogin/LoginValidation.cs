@@ -46,10 +46,10 @@ namespace UserLogin
                 return false;
             }
 
-            Logger.LogActivity("Login successful");
-
             currentUserUsername = user.username;
             currentUserRole = (UserRoles)user.role;
+
+            Logger.LogActivity("Login successful");
             return true;
         }
     }
