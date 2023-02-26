@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace UserLogin
 {
@@ -51,7 +52,7 @@ namespace UserLogin
         private static void AdminPanel(User user)
         {
             Console.WriteLine($"Welcome, {user.username}! Here is the admin panel:\n0: Exit\n1: Change user's role" +
-                        "\n2: Change user's expiry date\n3: List registered users");
+                        "\n2: Change user's expiry date\n3: List registered users\n4: Show activity log\n5: Show current session log");
 
             String username;
             UserRoles role;
@@ -119,6 +120,15 @@ namespace UserLogin
                     foreach (User temp in UserData.TestUsers)
                         Console.WriteLine(temp.username);
 
+                    break;
+                case '4':
+                    StreamReader logFile = new StreamReader("Log.txt");
+
+                    Console.WriteLine(logFile.ReadToEnd());
+                    logFile.Close();
+                    break;
+                case '5':
+                    Console.WriteLine(Logger.GetCurrentSessionActivities());
                     break;
             }
         }
