@@ -51,85 +51,93 @@ namespace UserLogin
 
         private static void AdminPanel(User user)
         {
-            Console.WriteLine($"Welcome, {user.Username}! Here is the admin panel:\n0: Exit\n1: Change user's role" +
-                        "\n2: Change user's expiry date\n3: List registered users\n4: Show activity log\n5: Show current session log");
-
-            string username;
-            UserRoles role;
-            
-            string choice = Console.ReadLine();
-            if (String.IsNullOrEmpty(choice) || choice.Length > 1)
+            while (true)
             {
-                return;
-            }
+
+                Console.WriteLine($"Welcome, {user.Username}! Here is the admin panel:\n0: Exit\n1: Change user's role" +
+                            "\n2: Change user's expiry date\n3: List registered users\n4: Show activity log" +
+                            "\n5: Show current session log");
+
+                string username;
+                UserRoles role;
             
-            switch (choice[0])
-            {
-                case '0':
-                    break;
-                case '1':
-                    Console.Write("Enter user's username: ");
-                    username = Console.ReadLine();
-                    if (!UserData.UserExists(username))
-                    {
-                        Console.WriteLine("User does not exist!");
+                string choice = Console.ReadLine();
+                if (String.IsNullOrEmpty(choice) || choice.Length > 1)
+                {
+                    Console.WriteLine("Invalid Choice!");
+                    continue;
+                }
+
+                switch (choice[0])
+                {
+                    case '0':
+                        return;
+                    case '1':
+                        Console.Write("Enter user's username: ");
+                        username = Console.ReadLine();
+                        if (!UserData.UserExists(username))
+                        {
+                            Console.WriteLine("User does not exist!");
+                            break;
+                        }
+
+                        Console.WriteLine($"\nAvailable Roles:");
+                        foreach (UserRoles a in Enum.GetValues(typeof(UserRoles)))
+                        {
+                            Console.Write($"{a}  ");
+                        }
+
+                        Console.Write("\nEnter new role's name: ");
+                        string roleStr = Console.ReadLine();
+                        if (String.IsNullOrEmpty(roleStr) || !Enum.TryParse(roleStr.ToUpper(), out role))
+                        {
+                            Console.WriteLine("Invalid Role Name!");
+                            break;
+                        }
+
+                        UserData.AssignUserRole(username, role);
                         break;
-                    }
+                    case '2':
+                        Console.Write("Enter user's username: ");
+                        username = Console.ReadLine();
+                        if (!UserData.UserExists(username))
+                        {
+                            Console.WriteLine("User does not exist!");
+                            break;
+                        }
 
-                    Console.WriteLine($"\nAvailable Roles:");
-                    foreach (UserRoles a in Enum.GetValues(typeof(UserRoles)))
-                    {
-                        Console.Write($"{a}  ");
-                    }
+                        Console.WriteLine("Valid Date Format: 2020-12-31 13:00:00");
+                        Console.Write("Enter an expiry date: ");
 
-                    Console.Write("\nEnter new role's name: ");
-                    string roleStr = Console.ReadLine();
-                    if (String.IsNullOrEmpty(roleStr) || !Enum.TryParse(roleStr.ToUpper(), out role))
-                    {
-                        Console.WriteLine("Invalid Role Name!");
+                        try
+                        {
+                            DateTime expiryDate = DateTime.Parse(Console.ReadLine());
+                            UserData.SetUserActiveTo(username, expiryDate);
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Incorrect date format!");
+                        }
+                        Console.WriteLine();
+
                         break;
-                    }
+                    case '3':
+                        Console.WriteLine("Registered users:");
+                        foreach (User temp in UserData.TestUsers)
+                            Console.WriteLine(temp.Username);
+                        Console.WriteLine();
 
-                    UserData.AssignUserRole(username, role);
-                    break;
-                case '2':
-                    Console.Write("Enter user's username: ");
-                    username = Console.ReadLine();
-                    if (!UserData.UserExists(username))
-                    {
-                        Console.WriteLine("User does not exist!");
                         break;
-                    }
+                    case '4':
+                        var logFile = new StreamReader("Log.txt");
 
-                    Console.WriteLine("Valid Date Format: 2020-12-31 13:00:00");
-                    Console.Write("Enter an expiry date: ");
-
-                    try
-                    {
-                        DateTime expiryDate = DateTime.Parse(Console.ReadLine());
-                        UserData.SetUserActiveTo(username, expiryDate);
-                    }
-                    catch (FormatException)
-                    {
-                        Console.WriteLine("Incorrect date format!");
-                    }
-
-                    break;
-                case '3':
-                    Console.WriteLine("Registered users:");
-                    foreach (User temp in UserData.TestUsers)
-                        Console.WriteLine(temp.Username);
-
-                    break;
-                case '4':
-                    var logFile = new StreamReader("Log.txt");
-
-                    Console.WriteLine(logFile.ReadToEnd());
-                    logFile.Close();
-                    break;
-                case '5':
-                    Console.WriteLine(Logger.GetCurrentSessionActivities());
-                    break;
+                        Console.WriteLine(logFile.ReadToEnd());
+                        logFile.Close();
+                        break;
+                    case '5':
+                        Console.WriteLine(Logger.GetCurrentSessionActivities());
+                        break;
+                }
             }
         }
     }
