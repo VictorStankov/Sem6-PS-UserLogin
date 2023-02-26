@@ -28,43 +28,43 @@ namespace UserLogin
             _testUsers.Add(new User("student_2", "asddsa", 3, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue));
         }
 
-        public static User IsUserPassCorrect(String username, String password)
+        public static User IsUserPassCorrect(string username, string password)
         {
             ResetTestUserData();
 
             foreach (User user in _testUsers)
-                if (username == user.username && password == user.password)
+                if (username == user.Username && password == user.Password)
                     return user;
 
             return null;
         }
 
-        public static bool UserExists(String username)
+        public static bool UserExists(string username)
         {
             foreach (User user in _testUsers)
-                if (username == user.username)
+                if (username == user.Username)
                     return true;
             return false;
         }
 
-        public static void SetUserActiveTo(String username, DateTime date)
+        public static void SetUserActiveTo(string username, DateTime date)
         {
             Logger.LogActivity($"Change expiry date of user '{username}'");
             foreach (User user in _testUsers)
-                if (user.username == username)
+                if (user.Username == username)
                 {
-                    user.validUntil = date;
+                    user.ValidUntil = date;
                     break;
                 }
         }
 
-        public static void AssignUserRole(String username, UserRoles role)
+        public static void AssignUserRole(string username, UserRoles role)
         {
             Logger.LogActivity($"Change role of user '{username}'");
             foreach (User user in _testUsers)
-                if (user.username == username)
+                if (user.Username == username)
                 {
-                    user.role = (Int32)role;
+                    user.Role = (int)role;
                     break;
                 }
         }

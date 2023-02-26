@@ -7,14 +7,14 @@ namespace UserLogin
     {
         static void Main(string[] args)
         {
-            String username, password;
+            string username, password;
 
             Console.Write("Enter username: ");
             username = Console.ReadLine();
             Console.Write("Enter password: ");
             password = Console.ReadLine();
 
-            LoginValidation val = new LoginValidation(username, password, new LoginValidation.ActionOnError(PrintError));
+            var val = new LoginValidation(username, password, new LoginValidation.ActionOnError(PrintError));
 
             User user = null;
 
@@ -24,19 +24,19 @@ namespace UserLogin
 
             val.ValidateUserInput(ref user);
 
-            switch (LoginValidation.currentUserRole)
+            switch (LoginValidation.CurrentUserRole)
             {
                 case UserRoles.ADMIN:
                     AdminPanel(user);
                     break;
                 case UserRoles.INSPECTOR:
-                    Console.WriteLine($"Welcome, {user.username}! Here is a list of your tasks:");
+                    Console.WriteLine($"Welcome, {user.Username}! Here is a list of your tasks:");
                     break;
                 case UserRoles.PROFESSOR:
-                    Console.WriteLine($"Welcome, {user.username}! These are your most recent emails:");
+                    Console.WriteLine($"Welcome, {user.Username}! These are your most recent emails:");
                     break;
                 case UserRoles.STUDENT:
-                    Console.WriteLine($"Welcome, student {user.username}! These are your upcoming deadlines:");
+                    Console.WriteLine($"Welcome, student {user.Username}! These are your upcoming deadlines:");
                     break;
                 case UserRoles.ANONYMOUS:
                     Console.WriteLine($"Welcome! A user with your credentials was not found. Proceeding as guest...");
@@ -51,13 +51,13 @@ namespace UserLogin
 
         private static void AdminPanel(User user)
         {
-            Console.WriteLine($"Welcome, {user.username}! Here is the admin panel:\n0: Exit\n1: Change user's role" +
+            Console.WriteLine($"Welcome, {user.Username}! Here is the admin panel:\n0: Exit\n1: Change user's role" +
                         "\n2: Change user's expiry date\n3: List registered users\n4: Show activity log\n5: Show current session log");
 
-            String username;
+            string username;
             UserRoles role;
             
-            String choice = Console.ReadLine();
+            string choice = Console.ReadLine();
             if (String.IsNullOrEmpty(choice) || choice.Length > 1)
             {
                 return;
@@ -83,8 +83,8 @@ namespace UserLogin
                     }
 
                     Console.Write("\nEnter new role's name: ");
-                    String role_str = Console.ReadLine();
-                    if (String.IsNullOrEmpty(role_str) || !Enum.TryParse(role_str.ToUpper(), out role))
+                    string roleStr = Console.ReadLine();
+                    if (String.IsNullOrEmpty(roleStr) || !Enum.TryParse(roleStr.ToUpper(), out role))
                     {
                         Console.WriteLine("Invalid Role Name!");
                         break;
@@ -118,11 +118,11 @@ namespace UserLogin
                 case '3':
                     Console.WriteLine("Registered users:");
                     foreach (User temp in UserData.TestUsers)
-                        Console.WriteLine(temp.username);
+                        Console.WriteLine(temp.Username);
 
                     break;
                 case '4':
-                    StreamReader logFile = new StreamReader("Log.txt");
+                    var logFile = new StreamReader("Log.txt");
 
                     Console.WriteLine(logFile.ReadToEnd());
                     logFile.Close();

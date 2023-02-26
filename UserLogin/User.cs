@@ -4,40 +4,40 @@ namespace UserLogin
 {
     class User
     {
-        public String username
+        public string Username
         {
             get; set;
         }
-        public String password
+        public string Password
         {
             get; set;
         }
-        public Int32 facultyNum
+        public int FacultyNum
         {
             get; set;
         }
-        public Int32 role
+        public int Role
         {
             get; set;
         }
-        public DateTime created
+        public DateTime Created
         {
             get; set;
         }
-        public DateTime validUntil
+        public DateTime ValidUntil
         {
             get; set;
         }
 
         public User() { }
-        public User(String username, String password, Int32 facultyNum, Int32 role, DateTime created, DateTime validUntil)
+        public User(string username, string password, int facultyNum, int role, DateTime created, DateTime validUntil)
         {
-            this.username = username;
-            this.password = password;
-            this.facultyNum = facultyNum;
-            this.role = role;
-            this.created = created;
-            this.validUntil = validUntil;
+            this.Username = username;
+            this.Password = password;
+            this.FacultyNum = facultyNum;
+            this.Role = role;
+            this.Created = created;
+            this.ValidUntil = validUntil;
         }
     }
 
