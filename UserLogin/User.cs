@@ -1,28 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UserLogin
 {
     class User
     {
-        public String username
+        public string Username
         {
             get; set;
         }
-        public String password
+        public string Password
         {
             get; set;
         }
-        public Int32 faculty_num
+        public int FacultyNum
         {
             get; set;
         }
-        public Int32 role
+        public int Role
         {
             get; set;
+        }
+        public DateTime Created
+        {
+            get; set;
+        }
+        public DateTime ValidUntil
+        {
+            get; set;
+        }
+
+        public User() { }
+        public User(string username, string password, int facultyNum, int role, DateTime created, DateTime validUntil)
+        {
+            this.Username = username;
+            this.Password = password;
+            this.FacultyNum = facultyNum;
+            this.Role = role;
+            this.Created = created;
+            this.ValidUntil = validUntil;
         }
     }
 
