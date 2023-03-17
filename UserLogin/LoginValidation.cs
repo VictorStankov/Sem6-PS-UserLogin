@@ -1,21 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UserLogin
 {
     class LoginValidation
     {
-        public static UserRoles currentUserRole
+        public delegate void ActionOnError(string errorMsg);
+
+        private string _username, _password;
+        public static string CurrentUserUsername;
+        public static UserRoles CurrentUserRole
         {
             get; private set;
         }
 
-        public bool ValidateUserInput(User user)
+        private ActionOnError _errorfunc;
+
+        public LoginValidation(string username, string password, ActionOnError errorfunc)
         {
-            currentUserRole = UserRoles.ADMIN;
+            this._username = username;
+            this._password = password;
+            this._errorfunc = errorfunc;
+        }
+        
+        public bool ValidateUserInput(ref User user)
+        {
+            if (_username.Length < 5)
+            {
+                _errorfunc("Please enter a username longer than 5 characters!");
+                return false;
+            }
+
+            if (_password.Length < 5)
+            {
+                _errorfunc("Please enter a password longer than 5 characters!");
+                return false;
+            }
+
+            user = UserData.IsUserPassCorrect(_username, _password);
+
+            if (user == null)
+            {
+                _errorfunc("User not found!");
+                CurrentUserUsername = null;
+                CurrentUserRole = UserRoles.ANONYMOUS;
+                return false;
+            }
+
+            CurrentUserUsername = user.Username;
+            CurrentUserRole = (UserRoles)user.Role;
+
+            Logger.LogActivity(Activities.userLogin);
             return true;
         }
     }
