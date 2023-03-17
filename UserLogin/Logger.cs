@@ -9,13 +9,30 @@ namespace UserLogin
     {
         private static List<string> _currentSessionActivities = new List<string>();
 
-        public static void LogActivity(string activity)
+        // The parameter "username" is not the logged in user. 
+        // Rather it is used to log the name of the user whose information has been changed.
+        public static void LogActivity(Activities activity, string username="")
         {
             string activityLine = $"{DateTime.Now};{LoginValidation.CurrentUserUsername};" +
-                $"{LoginValidation.CurrentUserRole};{activity}\n";
+                $"{LoginValidation.CurrentUserRole};{GetActivityDescription(activity)};{username}\n";
 
             _currentSessionActivities.Add(activityLine);
             File.AppendAllText("Log.txt", activityLine);
+        }
+
+        private static string GetActivityDescription(Activities activity)
+        {
+            switch (activity)
+            {
+                case Activities.userLogin:
+                    return "Logged in successfully";
+                case Activities.userChanged:
+                    return "Changed user's information";
+                case Activities.userActiveToChanged:
+                    return "Changed user's expiry date";
+                default:
+                    return "Unrecognised activity";
+            }
         }
 
         public static string GetCurrentSessionActivities()

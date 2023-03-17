@@ -49,7 +49,7 @@ namespace UserLogin
 
         public static void SetUserActiveTo(string username, DateTime date)
         {
-            Logger.LogActivity($"Change expiry date of user '{username}'");
+            Logger.LogActivity(Activities.userActiveToChanged, username);
             foreach (User user in _testUsers)
                 if (user.Username == username)
                 {
@@ -60,7 +60,7 @@ namespace UserLogin
 
         public static void AssignUserRole(string username, UserRoles role)
         {
-            Logger.LogActivity($"Change role of user '{username}'");
+            Logger.LogActivity(Activities.userChanged, username);
             foreach (User user in _testUsers)
                 if (user.Username == username)
                 {

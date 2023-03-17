@@ -49,7 +49,7 @@ namespace UserLogin
             CurrentUserUsername = user.Username;
             CurrentUserRole = (UserRoles)user.Role;
 
-            Logger.LogActivity("Login successful");
+            Logger.LogActivity(Activities.userLogin);
             return true;
         }
     }
