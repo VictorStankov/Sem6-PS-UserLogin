@@ -2,7 +2,7 @@
 
 namespace StudentInfoName
 {
-    class StudentData
+    static class StudentData
     {
         public static List<Student> TestStudents
         {
