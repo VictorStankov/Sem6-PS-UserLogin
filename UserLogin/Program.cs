@@ -136,9 +136,12 @@ namespace UserLogin
                         Console.WriteLine(sb.ToString());
                         break;
                     case '5':
+                        Console.Write("Enter filter: ");
+                        string filter = Console.ReadLine();
+
                         sb.Clear();
-                        foreach (string line in Logger.GetCurrentSessionActivities())
-                            sb.AppendLine(line);
+                        foreach (string line in Logger.GetCurrentSessionActivities(filter))
+                            sb.Append(line);
                         
                         Console.WriteLine(sb.ToString());
                         break;

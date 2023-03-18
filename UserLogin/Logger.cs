@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace UserLogin
 {
@@ -43,9 +44,14 @@ namespace UserLogin
             return logLines;
         }
 
-        public static IEnumerable<string> GetCurrentSessionActivities()
+        public static IEnumerable<string> GetCurrentSessionActivities(string filter)
         {
-            return _currentSessionActivities;
+            List<string> filteredActivities = (
+                from activity in _currentSessionActivities
+                where activity.ToLower().Contains(filter)
+                select activity
+            ).ToList();
+            return filteredActivities;
         }
     }
 }
