@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace UserLogin
 {
-    static class Logger
+    public static class Logger
     {
         private static List<string> _currentSessionActivities = new List<string>();
 
