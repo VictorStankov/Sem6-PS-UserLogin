@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:StudentInfoName"
         mc:Ignorable="d"
         Title="Студентска информационна система" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="MainGrid">
         <GroupBox Header="Лични данни" Height="103" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="772"/>
         <Label Content="Име:" Margin="20,28,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <Label Content="Презиме:" Margin="20,54,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
@@ -31,6 +31,10 @@
         <TextBox x:Name="Year" HorizontalAlignment="Left" Height="24" Margin="568,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
         <TextBox x:Name="Stream" HorizontalAlignment="Left" Height="24" Margin="568,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
         <TextBox x:Name="Group" HorizontalAlignment="Left" Height="24" Margin="568,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="Clear" Content="Clear" HorizontalAlignment="Left" Margin="80,309,0,0" VerticalAlignment="Top" Width="75" Click="Clear_Click"/>
+        <Button x:Name="LoadTestStudent" Content="Load Test Student" HorizontalAlignment="Left" Margin="202,309,0,0" VerticalAlignment="Top" Width="109" Click="LoadTestStudent_Click"/>
+        <Button x:Name="SetInactive" Content="Set Inactive" HorizontalAlignment="Left" Margin="346,309,0,0" VerticalAlignment="Top" Width="75" Click="SetInactive_Click"/>
+        <Button x:Name="SetActive" Content="Set Active" HorizontalAlignment="Left" Margin="451,309,0,0" VerticalAlignment="Top" Width="75" Click="SetActive_Click"/>
 
     </Grid>
 </Window>
