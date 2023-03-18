@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.2092
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33423.256
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserLogin", "UserLogin\UserLogin.csproj", "{0C7C4939-FB7E-4EEB-A77D-502C42173848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentInfoName", "StudentInfoName\StudentInfoName.csproj", "{F958B5DB-368A-48BE-A0B3-F1D26E64396A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0C7C4939-FB7E-4EEB-A77D-502C42173848}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C7C4939-FB7E-4EEB-A77D-502C42173848}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C7C4939-FB7E-4EEB-A77D-502C42173848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F958B5DB-368A-48BE-A0B3-F1D26E64396A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F958B5DB-368A-48BE-A0B3-F1D26E64396A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F958B5DB-368A-48BE-A0B3-F1D26E64396A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F958B5DB-368A-48BE-A0B3-F1D26E64396A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
