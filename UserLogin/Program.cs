@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Text;
 
 namespace UserLogin
 {
@@ -67,6 +67,8 @@ namespace UserLogin
                     Console.WriteLine("Invalid Choice!");
                     continue;
                 }
+                
+                StringBuilder sb = new StringBuilder();
 
                 switch (choice[0])
                 {
@@ -83,9 +85,7 @@ namespace UserLogin
 
                         Console.WriteLine($"\nAvailable Roles:");
                         foreach (UserRoles a in Enum.GetValues(typeof(UserRoles)))
-                        {
                             Console.Write($"{a}  ");
-                        }
 
                         Console.Write("\nEnter new role's name: ");
                         string roleStr = Console.ReadLine();
@@ -129,13 +129,18 @@ namespace UserLogin
 
                         break;
                     case '4':
-                        var logFile = new StreamReader("Log.txt");
-
-                        Console.WriteLine(logFile.ReadToEnd());
-                        logFile.Close();
+                        sb.Clear();
+                        foreach (string line in Logger.GetLogFileActivities())
+                            sb.AppendLine(line);
+                        
+                        Console.WriteLine(sb.ToString());
                         break;
                     case '5':
-                        Console.WriteLine(Logger.GetCurrentSessionActivities());
+                        sb.Clear();
+                        foreach (string line in Logger.GetCurrentSessionActivities())
+                            sb.AppendLine(line);
+                        
+                        Console.WriteLine(sb.ToString());
                         break;
                 }
             }

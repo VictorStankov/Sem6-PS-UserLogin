@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace UserLogin
 {
@@ -34,15 +33,19 @@ namespace UserLogin
                     return "Unrecognised activity";
             }
         }
-
-        public static string GetCurrentSessionActivities()
+        public static IEnumerable<string> GetLogFileActivities()
         {
-            StringBuilder output = new StringBuilder();
+            var logFile = new StreamReader("Log.txt");
 
-            foreach (string line in _currentSessionActivities)
-                output.Append(line);
+            var logLines = logFile.ReadToEnd().Split('\n');
+            logFile.Close();
 
-            return output.ToString();
+            return logLines;
+        }
+
+        public static IEnumerable<string> GetCurrentSessionActivities()
+        {
+            return _currentSessionActivities;
         }
     }
 }
