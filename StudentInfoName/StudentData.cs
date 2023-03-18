@@ -23,7 +23,7 @@ namespace StudentInfoName
             else
                 _testStudents.Clear();
             
-            _testStudents.Add(new Student("Ivan", "Ivanov", "Ivanov", "FCST", "CSE", "bachelor", 1, 1, 1, 1));
+            _testStudents.Add(new Student("Ivan", "Ivanov", "Ivanov", "FCST", "CSE", "bachelor", 1, 1, 1, 1, true));
         }
     }
 }
