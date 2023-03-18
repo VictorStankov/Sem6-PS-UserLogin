@@ -8,16 +8,16 @@
         public Student(string firstName, string middleName, string surname, string faculty, string specialty,
             string degree, int facultyNum, int year, int stream, int group)
         {
-            this.FirstName = firstName;
-            this.MiddleName = middleName;
-            this.Surname = surname;
-            this.Faculty = faculty;
-            this.Specialty = specialty;
-            this.Degree = degree;
-            this.FacultyNum = facultyNum;
-            this.Year = year;
-            this.Stream = stream;
-            this.Group = group;
+            FirstName = firstName;
+            MiddleName = middleName;
+            Surname = surname;
+            Faculty = faculty;
+            Specialty = specialty;
+            Degree = degree;
+            FacultyNum = facultyNum;
+            Year = year;
+            Stream = stream;
+            Group = group;
         }
     }
 }
