@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UserLogin
 {
@@ -32,11 +33,7 @@ namespace UserLogin
         {
             ResetTestUserData();
 
-            foreach (User user in _testUsers)
-                if (username == user.Username && password == user.Password)
-                    return user;
-
-            return null;
+            return (from user in _testUsers where user.Username == username && user.Password == password select user).FirstOrDefault();
         }
 
         public static bool UserExists(string username)
