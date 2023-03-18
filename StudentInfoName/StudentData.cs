@@ -4,7 +4,7 @@ namespace StudentInfoName
 {
     class StudentData
     {
-        public List<Student> TestStudents
+        public static List<Student> TestStudents
         {
             get
             {
