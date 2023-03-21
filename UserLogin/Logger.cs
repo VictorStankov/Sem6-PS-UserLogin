@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using System.Linq;
 
 namespace UserLogin
 {
-    static class Logger
+    public static class Logger
     {
         private static List<string> _currentSessionActivities = new List<string>();
 
@@ -34,15 +34,24 @@ namespace UserLogin
                     return "Unrecognised activity";
             }
         }
-
-        public static string GetCurrentSessionActivities()
+        public static IEnumerable<string> GetLogFileActivities()
         {
-            StringBuilder output = new StringBuilder();
+            var logFile = new StreamReader("Log.txt");
 
-            foreach (string line in _currentSessionActivities)
-                output.Append(line);
+            var logLines = logFile.ReadToEnd().Split('\n');
+            logFile.Close();
 
-            return output.ToString();
+            return logLines;
+        }
+
+        public static IEnumerable<string> GetCurrentSessionActivities(string filter)
+        {
+            List<string> filteredActivities = (
+                from activity in _currentSessionActivities
+                where activity.ToLower().Contains(filter)
+                select activity
+            ).ToList();
+            return filteredActivities;
         }
     }
 }

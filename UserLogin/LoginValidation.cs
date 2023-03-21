@@ -2,7 +2,7 @@
 
 namespace UserLogin
 {
-    class LoginValidation
+    public class LoginValidation
     {
         public delegate void ActionOnError(string errorMsg);
 
