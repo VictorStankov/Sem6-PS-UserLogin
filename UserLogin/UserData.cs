@@ -33,37 +33,26 @@ namespace UserLogin
         {
             ResetTestUserData();
 
-            return (from user in _testUsers where user.Username == username && user.Password == password select user).FirstOrDefault();
+            return _testUsers.Where(user => user.Username == username && user.Password == password).FirstOrDefault();
         }
 
         public static bool UserExists(string username)
         {
-            foreach (User user in _testUsers)
-                if (username == user.Username)
-                    return true;
-            return false;
+            return _testUsers.Where(user => user.Username == username).FirstOrDefault() != null;
         }
 
         public static void SetUserActiveTo(string username, DateTime date)
         {
             Logger.LogActivity(Activities.userActiveToChanged, username);
-            foreach (User user in _testUsers)
-                if (user.Username == username)
-                {
-                    user.ValidUntil = date;
-                    break;
-                }
+
+            _testUsers.Where(user => user.Username == username).FirstOrDefault().ValidUntil = date;
         }
 
         public static void AssignUserRole(string username, UserRoles role)
         {
             Logger.LogActivity(Activities.userChanged, username);
-            foreach (User user in _testUsers)
-                if (user.Username == username)
-                {
-                    user.Role = (int)role;
-                    break;
-                }
+
+            _testUsers.Where(user => user.Username == username).FirstOrDefault().Role = (int)role;
         }
     }
 }
