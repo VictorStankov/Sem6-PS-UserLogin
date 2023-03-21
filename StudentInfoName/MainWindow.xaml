@@ -35,6 +35,7 @@
         <Button x:Name="LoadTestStudent" Content="Load Test Student" HorizontalAlignment="Left" Margin="202,309,0,0" VerticalAlignment="Top" Width="109" Click="LoadTestStudent_Click"/>
         <Button x:Name="SetInactive" Content="Set Inactive" HorizontalAlignment="Left" Margin="346,309,0,0" VerticalAlignment="Top" Width="75" Click="SetInactive_Click"/>
         <Button x:Name="SetActive" Content="Set Active" HorizontalAlignment="Left" Margin="451,309,0,0" VerticalAlignment="Top" Width="75" Click="SetActive_Click"/>
+        <Button x:Name="login_logout" Content="Log in" HorizontalAlignment="Left" Margin="568,309,0,0" VerticalAlignment="Top" Width="75" Click="login_logout_Click"/>
 
     </Grid>
 </Window>

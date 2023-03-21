@@ -20,6 +20,8 @@ namespace StudentInfoName
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool isLoggedIn = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -79,6 +81,22 @@ namespace StudentInfoName
         private void SetActive_Click(object sender, RoutedEventArgs e)
         {
             SetInputsActive();
+        }
+
+        private void login_logout_Click(object sender, RoutedEventArgs e)
+        {
+            if (isLoggedIn)
+            {
+                ClearAllInputs();
+                login_logout.Content = "Log in";
+                isLoggedIn = false;
+            }
+            else
+            {
+                LoadStudent(StudentData.TestStudents.OrderBy(student => student.FacultyNum).First());
+                login_logout.Content = "Log out";
+                isLoggedIn = true;
+            }
         }
     }
 }
