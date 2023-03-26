@@ -33,7 +33,9 @@ namespace UserLogin
         {
             ResetTestUserData();
 
-            return _testUsers.Where(user => user.Username == username && user.Password == password).FirstOrDefault();
+            UserContext context = new UserContext();
+
+            return context.Users.Where(user => user.Username == username && user.Password == password).FirstOrDefault();
         }
 
         public static bool UserExists(string username)
