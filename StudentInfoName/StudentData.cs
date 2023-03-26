@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace StudentInfoName
+namespace StudentInfoSystem
 {
     static class StudentData
     {

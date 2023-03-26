@@ -1,4 +1,4 @@
-﻿namespace StudentInfoName
+﻿namespace StudentInfoSystem
 {
     public class Student
     {

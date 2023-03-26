@@ -1,7 +1,7 @@
 ﻿using UserLogin;
 using System.Linq;
 
-namespace StudentInfoName
+namespace StudentInfoSystem
 {
     class StudentValidation
     {
