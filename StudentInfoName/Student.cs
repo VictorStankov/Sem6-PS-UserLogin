@@ -2,6 +2,7 @@
 {
     public class Student
     {
+        public int StudentId { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string Surname { get; set; }
@@ -13,7 +14,6 @@
         public int Stream { get; set; }
         public int Group { get; set; }
         public int Status { get; set; }
-        public int StudentId { get; set; }
 
         public Student(int studentId, string firstName, string middleName, string surname, string faculty, string specialty,
             string degree, int facultyNum, int year, int stream, int group, int status)
