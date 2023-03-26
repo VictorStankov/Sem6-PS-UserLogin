@@ -24,9 +24,9 @@ namespace UserLogin
             else
                 _testUsers.Clear();
 
-            _testUsers.Add(new User("admin", "admin", 1, (int)UserRoles.ADMIN, DateTime.UtcNow, DateTime.MaxValue));
-            _testUsers.Add(new User("student_1", "asddsa", 2, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue));
-            _testUsers.Add(new User("student_2", "asddsa", 3, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue));
+            _testUsers.Add(new User(0, "admin", "admin", 1, (int)UserRoles.ADMIN, DateTime.UtcNow, DateTime.MaxValue));
+            _testUsers.Add(new User(1, "student_1", "asddsa", 2, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue));
+            _testUsers.Add(new User(2, "student_2", "asddsa", 3, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue));
         }
 
         public static User IsUserPassCorrect(string username, string password)
