@@ -28,6 +28,13 @@ namespace StudentInfoSystem
             _testStudents.Add(new Student(1, "Georgi", "Georgiev", "Georgiev", "FPMI", "PF", "bachelor", 2, 2, 2, 2, 2));
         }
 
+        public static Student IsThereStudent(int facNum)
+        {
+            StudentInfoContext context = new StudentInfoContext();
+
+            return context.Students.Where(st => st.FacultyNum == facNum).FirstOrDefault();
+        }
+
         private static List<Student> GetStudents()
         {
             StudentInfoContext context = new StudentInfoContext();
