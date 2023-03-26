@@ -9,6 +9,9 @@ namespace UserLogin
         {
             string username, password;
 
+            if (UserData.TestUsersIfEmpty())
+                UserData.CopyTestUsers();
+
             Console.Write("Enter username: ");
             username = Console.ReadLine();
             Console.Write("Enter password: ");

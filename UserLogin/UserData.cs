@@ -54,5 +54,22 @@ namespace UserLogin
 
             _testUsers.Where(user => user.Username == username).FirstOrDefault().Role = (int)role;
         }
+
+        public static bool TestUsersIfEmpty()
+        {
+            UserContext context = new UserContext();
+
+            return context.Users.Any();
+        }
+
+        public static void CopyTestUsers()
+        {
+            UserContext context = new UserContext();
+
+            foreach (User user in TestUsers)
+                context.Users.Add(user);
+
+            context.SaveChanges();
+        }
     }
 }
