@@ -52,6 +52,7 @@ namespace UserLogin
             Logger.LogActivity(Activities.userActiveToChanged, username);
 
             context.Users.Where(user => user.Username == username).FirstOrDefault().ValidUntil = date;
+            context.SaveChanges();
         }
 
         public static void AssignUserRole(string username, UserRoles role)
@@ -61,6 +62,7 @@ namespace UserLogin
             Logger.LogActivity(Activities.userChanged, username);
 
             context.Users.Where(user => user.Username == username).FirstOrDefault().Role = (int)role;
+            context.SaveChanges();
         }
 
         public static bool TestUsersIfEmpty()
