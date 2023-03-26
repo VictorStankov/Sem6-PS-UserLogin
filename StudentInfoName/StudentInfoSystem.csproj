@@ -68,6 +68,7 @@
     </ApplicationDefinition>
     <Compile Include="Student.cs" />
     <Compile Include="StudentData.cs" />
+    <Compile Include="StudentInfoContext.cs" />
     <Compile Include="StudentValidation.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
