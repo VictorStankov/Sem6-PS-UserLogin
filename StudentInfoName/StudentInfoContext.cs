@@ -6,7 +6,7 @@ namespace StudentInfoSystem
 {
     class StudentInfoContext : DbContext
     {
-        public DbSet<Student> Studets { get; set; }
+        public DbSet<Student> Students { get; set; }
         public DbSet<User> Users { get; set; }
 
         public StudentInfoContext() : base(ConfigurationManager.ConnectionStrings["DbConnection"].ToString())
