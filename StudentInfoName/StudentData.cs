@@ -46,7 +46,7 @@ namespace StudentInfoSystem
         {
             StudentInfoContext context = new StudentInfoContext();
 
-            return context.Students.Any();
+            return !context.Students.Any();
         }
 
         public static void CopyTestStudents()

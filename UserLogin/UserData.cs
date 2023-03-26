@@ -61,7 +61,7 @@ namespace UserLogin
         {
             UserContext context = new UserContext();
 
-            return context.Users.Any();
+            return !context.Users.Any();
         }
 
         public static void CopyTestUsers()
