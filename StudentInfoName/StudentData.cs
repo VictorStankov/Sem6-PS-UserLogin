@@ -58,5 +58,15 @@ namespace StudentInfoSystem
 
             context.SaveChanges();
         }
+
+        public static void DeleteStudent(int facNum)
+        {
+            StudentInfoContext context = new StudentInfoContext();
+
+            Student studentDel = context.Students.Where(student => student.FacultyNum == facNum).FirstOrDefault();
+
+            context.Students.Remove(studentDel);
+            context.SaveChanges();
+        }
     }
 }
