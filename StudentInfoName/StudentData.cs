@@ -23,8 +23,8 @@ namespace StudentInfoSystem
             else
                 _testStudents.Clear();
             
-            _testStudents.Add(new Student("Ivan", "Ivanov", "Ivanov", "FCST", "CSE", "bachelor", 1, 1, 1, 1, true));
-            _testStudents.Add(new Student("Georgi", "Georgiev", "Georgiev", "FPMI", "PF", "bachelor", 2, 2, 2, 2, true));
+            _testStudents.Add(new Student("Ivan", "Ivanov", "Ivanov", "FCST", "CSE", "bachelor", 1, 1, 1, 1, 1));
+            _testStudents.Add(new Student("Georgi", "Georgiev", "Georgiev", "FPMI", "PF", "bachelor", 2, 2, 2, 2, 2));
         }
     }
 }
