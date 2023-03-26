@@ -2,12 +2,23 @@
 {
     public class Student
     {
-        public string FirstName, MiddleName, Surname, Faculty, Specialty, Degree;
-        public int FacultyNum, Year, Stream, Group, Status;
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string Surname { get; set; }
+        public string Faculty { get; set; }
+        public string Specialty { get; set; }
+        public string Degree { get; set; }
+        public int FacultyNum { get; set; }
+        public int Year { get; set; }
+        public int Stream { get; set; }
+        public int Group { get; set; }
+        public int Status { get; set; }
+        public int StudentId { get; set; }
 
-        public Student(string firstName, string middleName, string surname, string faculty, string specialty,
+        public Student(int studentId, string firstName, string middleName, string surname, string faculty, string specialty,
             string degree, int facultyNum, int year, int stream, int group, int status)
         {
+            StudentId = studentId;
             FirstName = firstName;
             MiddleName = middleName;
             Surname = surname;
