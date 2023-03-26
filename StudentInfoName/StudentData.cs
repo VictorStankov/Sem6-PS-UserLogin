@@ -38,9 +38,8 @@ namespace StudentInfoSystem
         public static bool TestStudentsIfEmpty()
         {
             StudentInfoContext context = new StudentInfoContext();
-            IEnumerable<Student> queryStudents = context.Students;
 
-            return queryStudents.Count() == 0;
+            return context.Students.Any();
         }
 
         public static void CopyTestStudents()
