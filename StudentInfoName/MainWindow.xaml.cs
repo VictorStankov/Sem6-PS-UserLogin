@@ -18,6 +18,10 @@ namespace StudentInfoSystem
         public MainWindow()
         {
             InitializeComponent();
+
+            if (StudentData.TestStudentsIfEmpty())
+                StudentData.CopyTestStudents();
+
             FillStudStatusChoices();
 
             Status.ItemsSource = StudStatusChoices;
@@ -119,5 +123,6 @@ namespace StudentInfoSystem
                 }
             }
         }
+
     }
 }

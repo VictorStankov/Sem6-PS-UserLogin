@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace StudentInfoSystem
 {
@@ -22,9 +23,34 @@ namespace StudentInfoSystem
                 _testStudents = new List<Student>();
             else
                 _testStudents.Clear();
-            
+
             _testStudents.Add(new Student(0, "Ivan", "Ivanov", "Ivanov", "FCST", "CSE", "bachelor", 1, 1, 1, 1, 1));
             _testStudents.Add(new Student(1, "Georgi", "Georgiev", "Georgiev", "FPMI", "PF", "bachelor", 2, 2, 2, 2, 2));
+        }
+
+        private static List<Student> GetStudents()
+        {
+            StudentInfoContext context = new StudentInfoContext();
+            return context.Students.ToList();
+        }
+
+
+        public static bool TestStudentsIfEmpty()
+        {
+            StudentInfoContext context = new StudentInfoContext();
+            IEnumerable<Student> queryStudents = context.Students;
+
+            return queryStudents.Count() == 0;
+        }
+
+        public static void CopyTestStudents()
+        {
+            StudentInfoContext context = new StudentInfoContext();
+
+            foreach (Student st in TestStudents)
+                context.Students.Add(st);
+
+            context.SaveChanges();
         }
     }
 }

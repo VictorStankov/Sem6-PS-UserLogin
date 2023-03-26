@@ -15,6 +15,11 @@
         public int Group { get; set; }
         public int Status { get; set; }
 
+        public Student()
+        {
+
+        }
+
         public Student(int studentId, string firstName, string middleName, string surname, string faculty, string specialty,
             string degree, int facultyNum, int year, int stream, int group, int status)
         {
