@@ -126,7 +126,7 @@ namespace UserLogin
                         break;
                     case '3':
                         Console.WriteLine("Registered users:");
-                        foreach (User temp in UserData.TestUsers)
+                        foreach (User temp in new UserContext().Users)
                             Console.WriteLine(temp.Username);
                         Console.WriteLine();
 

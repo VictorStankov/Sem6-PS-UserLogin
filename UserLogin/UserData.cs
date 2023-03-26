@@ -40,21 +40,27 @@ namespace UserLogin
 
         public static bool UserExists(string username)
         {
-            return _testUsers.Where(user => user.Username == username).FirstOrDefault() != null;
+            UserContext context = new UserContext();
+
+            return context.Users.Where(user => user.Username == username).FirstOrDefault() != null;
         }
 
         public static void SetUserActiveTo(string username, DateTime date)
         {
+            UserContext context = new UserContext();
+
             Logger.LogActivity(Activities.userActiveToChanged, username);
 
-            _testUsers.Where(user => user.Username == username).FirstOrDefault().ValidUntil = date;
+            context.Users.Where(user => user.Username == username).FirstOrDefault().ValidUntil = date;
         }
 
         public static void AssignUserRole(string username, UserRoles role)
         {
+            UserContext context = new UserContext();
+
             Logger.LogActivity(Activities.userChanged, username);
 
-            _testUsers.Where(user => user.Username == username).FirstOrDefault().Role = (int)role;
+            context.Users.Where(user => user.Username == username).FirstOrDefault().Role = (int)role;
         }
 
         public static bool TestUsersIfEmpty()
