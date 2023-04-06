@@ -30,7 +30,7 @@
                  VerticalAlignment="Top" Width="200" />
         <TextBox x:Name="Degree" HorizontalAlignment="Left" Height="24" Margin="146,196,0,0" TextWrapping="Wrap"
                  VerticalAlignment="Top" Width="200" />
-        <TextBox x:Name="FacultyNum" HorizontalAlignment="Left" Height="24" Margin="146,248,0,0" TextWrapping="Wrap"
+        <TextBox x:Name="FacultyNum" HorizontalAlignment="Left" Height="24" Margin="146,249,0,0" TextWrapping="Wrap"
                  VerticalAlignment="Top" Width="200" />
         <Label Content="Курс:" Margin="482,143,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <Label Content="Поток:" Margin="482,169,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
@@ -51,7 +51,20 @@
                 VerticalAlignment="Top" Width="75" Click="SetActive_Click" />
         <Button x:Name="login_logout" Content="Log in" HorizontalAlignment="Left" Margin="568,309,0,0"
                 VerticalAlignment="Top" Width="75" Click="login_logout_Click" />
-        <ComboBox x:Name="Status" HorizontalAlignment="Left" Margin="146,223,0,0" VerticalAlignment="Top" Width="200" />
+        <ComboBox x:Name="Status" HorizontalAlignment="Left" Margin="146,224,0,0" VerticalAlignment="Top" Width="200" />
+        <Label Margin="20,28,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <Label Content="Оценка:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="407,28,0,0" />
+        <ComboBox x:Name="GradeNum" HorizontalAlignment="Left" Margin="523,31,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="2"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="4"/>
+            <ComboBoxItem Content="5"/>
+            <ComboBoxItem Content="6"/>
+        </ComboBox>
+        <Label Content="Предмет:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="407,54,0,0" />
+        <TextBox x:Name="SubjectName" HorizontalAlignment="Left" Height="24" Margin="523,55,0,0" TextWrapping="Wrap"
+            VerticalAlignment="Top" Width="145" />
+        <Button x:Name="SubmitGrade" Content="Submit Grade" HorizontalAlignment="Left" Margin="407,83,0,0" VerticalAlignment="Top" Width="100" Click="SubmitGrade_Click"/>
 
     </Grid>
 </Window>

@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>StudentInfoName</RootNamespace>
     <AssemblyName>StudentInfoName</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -17,6 +17,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -66,6 +67,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Grade.cs" />
+    <Compile Include="Migrations\202303271115501_InitialCreate.cs" />
+    <Compile Include="Migrations\202303271115501_InitialCreate.designer.cs">
+      <DependentUpon>202303271115501_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303271159108_tes.cs" />
+    <Compile Include="Migrations\202303271159108_tes.designer.cs">
+      <DependentUpon>202303271159108_tes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303271203225_test.cs" />
+    <Compile Include="Migrations\202303271203225_test.designer.cs">
+      <DependentUpon>202303271203225_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="StudentData.cs" />
     <Compile Include="StudentInfoContext.cs" />
@@ -97,18 +112,25 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202303271115501_InitialCreate.resx">
+      <DependentUpon>202303271115501_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303271159108_tes.resx">
+      <DependentUpon>202303271159108_tes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303271203225_test.resx">
+      <DependentUpon>202303271203225_test.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UserLogin\UserLogin.csproj">

@@ -124,5 +124,29 @@ namespace StudentInfoSystem
             }
         }
 
+        private void AddStudentGrade(int FacNum, string className, int gradeNum)
+        {
+            StudentInfoContext context = new StudentInfoContext();
+
+            Student student = context.Students.Where(st => st.FacultyNum == FacNum).First();
+
+            if (student != null)
+            {
+                context.Grades.Add(new Grade(student, className, gradeNum));
+                context.SaveChanges();
+            }
+        }
+
+        private void SubmitGrade_Click(object sender, RoutedEventArgs e)
+        {
+            int facNum, gradeNum;
+            if (!int.TryParse(GradeNum.Text, out gradeNum))
+                return;
+
+            if (int.TryParse(FacultyNum.Text, out facNum))
+            {
+                AddStudentGrade(facNum, SubjectName.Text, gradeNum);
+            }
+        }
     }
 }
