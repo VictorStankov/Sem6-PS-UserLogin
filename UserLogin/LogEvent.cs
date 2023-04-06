@@ -4,7 +4,7 @@ namespace UserLogin
 {
     class LogEvent
     {
-        public int LogId { get; set; }
+        public int LogEventId { get; set; }
         public string Username { get; set; }
         public string Action { get; set; }
         public string TargetUser { get; set; }
