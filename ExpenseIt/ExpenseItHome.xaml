@@ -33,6 +33,6 @@
             <ListBoxItem>James</ListBoxItem>
             <ListBoxItem>David</ListBoxItem>
         </ListBox>
-        <Button Margin="0,10,0,0" Width="125" Height="25" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="3 ">View</Button>
+        <Button x:Name="viewBtn" Margin="0,10,0,0" Width="125" Height="25" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="3 " Click="viewBtn_Click">View</Button>
     </Grid>
 </Window>

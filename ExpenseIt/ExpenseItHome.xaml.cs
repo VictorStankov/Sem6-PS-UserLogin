@@ -23,5 +23,15 @@ namespace ExpenseIt
         {
             InitializeComponent();
         }
+
+        private void viewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ExpenseReport expenseReport = new ExpenseReport
+            {
+                Height = Height,
+                Width = Width
+            };
+            expenseReport.ShowDialog();
+        }
     }
 }
