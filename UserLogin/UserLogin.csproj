@@ -66,6 +66,10 @@
     <Compile Include="UserRoles.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\connections.config">
+      <Link>connections.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
