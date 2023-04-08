@@ -21,19 +21,14 @@
             <ImageBrush ImageSource="watermark.jpeg"/>
         </Grid.Background>
         
-        <Label Grid.Column="1" Grid.Row="0" Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=MainCaptionText}"></Label>
+        <Label Grid.Column="1" Grid.Row="0" Content="{Binding RelativeSource=
+        {RelativeSource AncestorType={x:Type Window}}, Path=MainCaptionText}"></Label>
         <Border Height="35" Padding="5" Background="#4E87D4" Grid.Column="1" Grid.Row="1">
             <Label VerticalAlignment="Center" Foreground="White">Names</Label>
         </Border>
-        <ListBox Name="peopleListBox" Grid.Column="1" Grid.Row="2">
-            <ListBoxItem>Mike</ListBoxItem>
-            <ListBoxItem>Lisa</ListBoxItem>
-            <ListBoxItem>John</ListBoxItem>
-            <ListBoxItem>Mary</ListBoxItem>
-            <ListBoxItem>James</ListBoxItem>
-            <ListBoxItem>David</ListBoxItem>
-        </ListBox>
+        <ListBox Name="peopleListBox" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding RelativeSource=
+        {RelativeSource AncestorType={x:Type Window}}, Path=ExpenseDataSource}"/>
         <Button x:Name="viewBtn" Margin="0,10,0,0" Width="125" Height="25" HorizontalAlignment="Right" 
-                Grid.Column="1" Grid.Row="3 " Click="viewBtn_Click" Content="{Binding ElementName=peopleListBox, Path=SelectedItem.Content}"/>
+                Grid.Column="1" Grid.Row="3 " Click="viewBtn_Click" Content="{Binding ElementName=peopleListBox, Path=SelectedItem.Name}"/>
     </Grid>
 </Window>
