@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ExpenseIt
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ExpenseItHome.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ExpenseItHome : Window
     {
-        public MainWindow()
+        public ExpenseItHome()
         {
             InitializeComponent();
-            ExpenseItHome homeWindow = new ExpenseItHome
-            {
-                Width = Width,
-                Height = Height
-            };
-            homeWindow.Show();
-            Close();
         }
     }
 }
