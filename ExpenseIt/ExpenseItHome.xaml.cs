@@ -19,6 +19,8 @@ namespace ExpenseIt
     /// </summary>
     public partial class ExpenseItHome : Window
     {
+        public string MainCaptionText { get; set; }
+
         public ExpenseItHome()
         {
             InitializeComponent();
