@@ -8,7 +8,7 @@ namespace ExpenseIt
 {
     public class Expense
     {
-        public string ExpenseType;
-        public double ExpenseAmount;
+        public string ExpenseType { get; set; }
+        public double ExpenseAmount { get; set; }
     }
 }

@@ -13,6 +13,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.Background>
@@ -30,22 +31,25 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
             <Label Grid.Column="0" Grid.Row="0" FontWeight="Bold" FontSize="14" Content="Name"/>
             <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=Name}"/>
             <Label Grid.Column="0" Grid.Row="1" FontWeight="Bold" FontSize="14" Content="Department"/>
-            <Label Grid.Column="1" Grid.Row="1" Content="{Binding Path=Department}"></Label>
+            <Label Grid.Column="1" Grid.Row="1" Content="{Binding Path=Department}"/>
             <Border Grid.Column="0" Grid.Row="2" Background="Navy">
                 <Label Foreground="White" FontSize="14" Content="Expense Type"/>
             </Border>
             <Border Grid.Column="1" Grid.Row="2" Background="Navy">
                 <Label Foreground="White" FontSize="14" Content="Amount"/>
             </Border>
-            <ListBox Grid.Column="0" Grid.Row="3"></ListBox>
-            <ListBox Grid.Column="1" Grid.Row="3"></ListBox>
         </Grid>
-        
+        <DataGrid Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Path=Expenses}"
+                  AutoGenerateColumns="False" RowHeaderWidth="0" HeadersVisibility="None" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ExpenseType" Binding="{Binding Path=ExpenseType}" Width="*" FontSize="11"/>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Path=ExpenseAmount}" Width="*" FontSize="11" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

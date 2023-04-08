@@ -10,6 +10,6 @@ namespace ExpenseIt
     {
         public string Name { get; set; }
         public string Department { get; set; }
-        public List<Expense> Expenses;
+        public List<Expense> Expenses { get; set; }
     }
 }
