@@ -31,9 +31,17 @@ namespace StudentInfoSystem
 
         public void ClearAllInputs()
         {
-            foreach (var field in MainGrid.Children)
-                if (field is TextBox)
-                    ((TextBox)field).Clear();
+            foreach (object field in PersonalDetails.Children)
+                if (field is TextBox textBox)
+                    textBox.Clear();
+                else if (field is ComboBox comboBox)
+                    comboBox.SelectedItem = null;
+
+            foreach (object field in StudentInformation.Children)
+                if (field is TextBox textBox)
+                    textBox.Clear();
+                else if (field is ComboBox comboBox)
+                    comboBox.SelectedItem = null;
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -63,9 +71,21 @@ namespace StudentInfoSystem
 
         public void SetInputsInactive()
         {
-            foreach (var field in MainGrid.Children)
-                if (field is TextBox box)
-                    box.IsEnabled = false;
+            foreach (object field in PersonalDetails.Children)
+                if (field is TextBox textBox)
+                    textBox.IsEnabled = false;
+                else if (field is ComboBox comboBox)
+                    comboBox.IsEnabled = false;
+                else if (field is Button button)
+                    button.IsEnabled = false;
+
+            foreach (object field in StudentInformation.Children)
+                if (field is TextBox textBox)
+                    textBox.IsEnabled = false;
+                else if (field is ComboBox comboBox)
+                    comboBox.IsEnabled = false;
+                else if (field is Button button)
+                    button.IsEnabled = false;
         }
 
         private void SetInactive_Click(object sender, RoutedEventArgs e)
@@ -75,9 +95,21 @@ namespace StudentInfoSystem
 
         public void SetInputsActive()
         {
-            foreach (var field in MainGrid.Children)
-                if (field is TextBox box)
-                    box.IsEnabled = true;
+            foreach (object field in PersonalDetails.Children)
+                if (field is TextBox textBox)
+                    textBox.IsEnabled = true;
+                else if (field is ComboBox comboBox)
+                    comboBox.IsEnabled = true;
+                else if (field is Button button)
+                    button.IsEnabled = true;
+
+            foreach (object field in StudentInformation.Children)
+                if (field is TextBox textBox)
+                    textBox.IsEnabled = true;
+                else if (field is ComboBox comboBox)
+                    comboBox.IsEnabled = true;
+                else if (field is Button button)
+                    button.IsEnabled = true;
         }
 
         private void SetActive_Click(object sender, RoutedEventArgs e)

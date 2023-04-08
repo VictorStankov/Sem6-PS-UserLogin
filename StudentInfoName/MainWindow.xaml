@@ -4,43 +4,83 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Студентска информационна система" Height="450" Width="800">
+        Title="Студентска информационна система" Height="450" Width="800" ResizeMode="CanMinimize">
     <Grid x:Name="MainGrid">
-        <GroupBox Header="Лични данни" Height="103" Margin="10,10,0,0" VerticalAlignment="Top"
-                  HorizontalAlignment="Left" Width="772" />
-        <Label Content="Име:" Margin="20,28,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Label Content="Презиме:" Margin="20,54,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Label Content="Фамилия:" Margin="20,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <TextBox x:Name="FirstName" HorizontalAlignment="Left" Height="24" Margin="146,29,0,0" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="200" />
-        <TextBox x:Name="MiddleName" HorizontalAlignment="Left" Height="24" Margin="146,55,0,0" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="200" />
-        <TextBox x:Name="LastName" HorizontalAlignment="Left" Height="25" Margin="146,81,0,0" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="200" />
-        <GroupBox Header="Студентска информация" HorizontalAlignment="Left" Height="156" Margin="10,124,0,0"
-                  VerticalAlignment="Top" Width="772" />
-        <Label Content="Факултет:" Margin="20,143,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Label Content="Специалност:" Margin="20,169,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Label Content="ОКС:" Margin="20,195,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Label Content="Статус:" Margin="20,221,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Label Content="Фак. номер:" Margin="20,247,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <TextBox x:Name="Faculty" HorizontalAlignment="Left" Height="24" Margin="146,144,0,0" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="200" />
-        <TextBox x:Name="Specialty" HorizontalAlignment="Left" Height="24" Margin="146,170,0,0" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="200" />
-        <TextBox x:Name="Degree" HorizontalAlignment="Left" Height="24" Margin="146,196,0,0" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="200" />
-        <TextBox x:Name="FacultyNum" HorizontalAlignment="Left" Height="24" Margin="146,249,0,0" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="200" />
-        <Label Content="Курс:" Margin="482,143,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Label Content="Поток:" Margin="482,169,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Label Content="Група:" Margin="482,195,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <TextBox x:Name="Year" HorizontalAlignment="Left" Height="24" Margin="568,144,0,0" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="100" />
-        <TextBox x:Name="Stream" HorizontalAlignment="Left" Height="24" Margin="568,170,0,0" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="100" />
-        <TextBox x:Name="Group" HorizontalAlignment="Left" Height="24" Margin="568,196,0,0" TextWrapping="Wrap"
-                 VerticalAlignment="Top" Width="100" />
+        <GroupBox Header="Лични данни" Height="100" Margin="10,10,10,0" VerticalAlignment="Top"
+                  HorizontalAlignment="Stretch" >
+            <Grid x:Name="PersonalDetails">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Label Content="Име:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" />
+                <Label Content="Презиме:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" />
+                <Label Content="Фамилия:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" />
+                <TextBox x:Name="FirstName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
+                         VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" />
+                <TextBox x:Name="MiddleName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
+                         VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" />
+                <TextBox x:Name="LastName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
+                         VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" />
+                
+                <Label Content="Оценка:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="2" Grid.Row="0" />
+                <ComboBox x:Name="GradeNum" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="3" Grid.Row="0">
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                    <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="5"/>
+                    <ComboBoxItem Content="6"/>
+                </ComboBox>
+                <Label Content="Предмет:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="2" Grid.Row="1" />
+                <TextBox x:Name="SubjectName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
+                         VerticalAlignment="Center" Grid.Column="3" Grid.Row="1" />
+                <Button x:Name="SubmitGrade" Content="Submit Grade" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Click="SubmitGrade_Click" Grid.Column="3" Grid.Row="2"/>
+            </Grid>
+        </GroupBox>
+        
+        <GroupBox Header="Студентска информация" HorizontalAlignment="Stretch" Height="170" Margin="10,120,10,0"
+                  VerticalAlignment="Top" >
+            <Grid x:Name="StudentInformation">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Content="Факултет:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" />
+                <Label Content="Специалност:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" />
+                <Label Content="ОКС:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" />
+                <Label Content="Статус:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3" />
+                <Label Content="Фак. номер:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="4" />
+                <TextBox x:Name="Faculty" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" />
+                <TextBox x:Name="Specialty" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" />
+                <TextBox x:Name="Degree"  HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" />
+                <ComboBox x:Name="Status" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" />  
+                <TextBox x:Name="FacultyNum"  HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4" />
+                <Label Content="Курс:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="0" Margin="10,0,0,0" />
+                <Label Content="Поток:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" Margin="10,0,0,0" />
+                <Label Content="Група:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="2" Margin="10,0,0,0" />
+                <TextBox x:Name="Year" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextWrapping="Wrap" Grid.Column="3" Grid.Row="0" />
+                <TextBox x:Name="Stream" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextWrapping="Wrap" Grid.Column="3" Grid.Row="1" />
+                <TextBox x:Name="Group" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextWrapping="Wrap" Grid.Column="3" Grid.Row="2"/>
+            </Grid>
+        </GroupBox>
+        
         <Button x:Name="Clear" Content="Clear" HorizontalAlignment="Left" Margin="80,309,0,0" VerticalAlignment="Top"
                 Width="75" Click="Clear_Click" />
         <Button x:Name="LoadTestStudent" Content="Load Test Student" HorizontalAlignment="Left" Margin="202,309,0,0"
@@ -51,20 +91,7 @@
                 VerticalAlignment="Top" Width="75" Click="SetActive_Click" />
         <Button x:Name="login_logout" Content="Log in" HorizontalAlignment="Left" Margin="568,309,0,0"
                 VerticalAlignment="Top" Width="75" Click="login_logout_Click" />
-        <ComboBox x:Name="Status" HorizontalAlignment="Left" Margin="146,224,0,0" VerticalAlignment="Top" Width="200" />
-        <Label Margin="20,28,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        <Label Content="Оценка:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="407,28,0,0" />
-        <ComboBox x:Name="GradeNum" HorizontalAlignment="Left" Margin="523,31,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Content="2"/>
-            <ComboBoxItem Content="3"/>
-            <ComboBoxItem Content="4"/>
-            <ComboBoxItem Content="5"/>
-            <ComboBoxItem Content="6"/>
-        </ComboBox>
-        <Label Content="Предмет:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="407,54,0,0" />
-        <TextBox x:Name="SubjectName" HorizontalAlignment="Left" Height="24" Margin="523,55,0,0" TextWrapping="Wrap"
-            VerticalAlignment="Top" Width="145" />
-        <Button x:Name="SubmitGrade" Content="Submit Grade" HorizontalAlignment="Left" Margin="407,83,0,0" VerticalAlignment="Top" Width="100" Click="SubmitGrade_Click"/>
+        
 
     </Grid>
 </Window>
