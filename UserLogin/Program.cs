@@ -9,6 +9,9 @@ namespace UserLogin
         {
             string username, password;
 
+            if (UserData.TestUsersIfEmpty())
+                UserData.CopyTestUsers();
+
             Console.Write("Enter username: ");
             username = Console.ReadLine();
             Console.Write("Enter password: ");
@@ -123,7 +126,7 @@ namespace UserLogin
                         break;
                     case '3':
                         Console.WriteLine("Registered users:");
-                        foreach (User temp in UserData.TestUsers)
+                        foreach (User temp in new UserContext().Users)
                             Console.WriteLine(temp.Username);
                         Console.WriteLine();
 

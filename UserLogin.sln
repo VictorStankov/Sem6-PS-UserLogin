@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.33423.256
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserLogin", "UserLogin\UserLogin.csproj", "{0C7C4939-FB7E-4EEB-A77D-502C42173848}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentInfoName", "StudentInfoName\StudentInfoName.csproj", "{F958B5DB-368A-48BE-A0B3-F1D26E64396A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentInfoSystem", "StudentInfoName\StudentInfoSystem.csproj", "{F958B5DB-368A-48BE-A0B3-F1D26E64396A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A3414FB2-BBB8-448A-866B-5B781A9B5B2B}"
+	ProjectSection(SolutionItems) = preProject
+		connections.config = connections.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

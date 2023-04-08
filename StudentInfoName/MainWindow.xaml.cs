@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace StudentInfoName
+namespace StudentInfoSystem
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -25,7 +18,16 @@ namespace StudentInfoName
         public MainWindow()
         {
             InitializeComponent();
+
+            if (StudentData.TestStudentsIfEmpty())
+                StudentData.CopyTestStudents();
+
+            FillStudStatusChoices();
+
+            Status.ItemsSource = StudStatusChoices;
         }
+
+        public List<string> StudStatusChoices { get; set; }
 
         public void ClearAllInputs()
         {
@@ -47,7 +49,7 @@ namespace StudentInfoName
             Faculty.Text = student.Faculty;
             Specialty.Text = student.Specialty;
             Degree.Text = student.Degree;
-            Status.Text = student.Status.ToString();
+            Status.Text = StudStatusChoices[student.Status - 1];
             FacultyNum.Text = student.FacultyNum.ToString();
             Year.Text = student.Year.ToString();
             Stream.Text = student.Stream.ToString();
@@ -96,6 +98,54 @@ namespace StudentInfoName
                 LoadStudent(StudentData.TestStudents.OrderBy(student => student.FacultyNum).First());
                 login_logout.Content = "Log out";
                 isLoggedIn = true;
+            }
+        }
+
+        private void FillStudStatusChoices()
+        {
+            StudStatusChoices = new List<string>();
+            using (IDbConnection connection = new SqlConnection(
+                       ConfigurationManager.ConnectionStrings["DbConnection"].ToString()))
+            {
+                var sqlquery = @"SELECT StatusDescr FROM StudStatus";
+                IDbCommand command = new SqlCommand();
+
+                command.Connection = connection;
+                connection.Open();
+                command.CommandText = sqlquery;
+
+                var reader = command.ExecuteReader();
+                
+                while (reader.Read())
+                {
+                    var s = reader.GetString(0);
+                    StudStatusChoices.Add(s);
+                }
+            }
+        }
+
+        private void AddStudentGrade(int FacNum, string className, int gradeNum)
+        {
+            StudentInfoContext context = new StudentInfoContext();
+
+            Student student = context.Students.Where(st => st.FacultyNum == FacNum).First();
+
+            if (student != null)
+            {
+                context.Grades.Add(new Grade(student, className, gradeNum));
+                context.SaveChanges();
+            }
+        }
+
+        private void SubmitGrade_Click(object sender, RoutedEventArgs e)
+        {
+            int facNum, gradeNum;
+            if (!int.TryParse(GradeNum.Text, out gradeNum))
+                return;
+
+            if (int.TryParse(FacultyNum.Text, out facNum))
+            {
+                AddStudentGrade(facNum, SubjectName.Text, gradeNum);
             }
         }
     }

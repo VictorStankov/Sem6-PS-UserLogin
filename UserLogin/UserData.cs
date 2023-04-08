@@ -24,35 +24,62 @@ namespace UserLogin
             else
                 _testUsers.Clear();
 
-            _testUsers.Add(new User("admin", "admin", 1, (int)UserRoles.ADMIN, DateTime.UtcNow, DateTime.MaxValue));
-            _testUsers.Add(new User("student_1", "asddsa", 2, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue));
-            _testUsers.Add(new User("student_2", "asddsa", 3, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue));
+            _testUsers.Add(new User(0, "admin", "admin", 1, (int)UserRoles.ADMIN, DateTime.UtcNow, DateTime.MaxValue));
+            _testUsers.Add(new User(1, "student_1", "asddsa", 2, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue));
+            _testUsers.Add(new User(2, "student_2", "asddsa", 3, (int)UserRoles.STUDENT, DateTime.UtcNow, DateTime.MaxValue));
         }
 
         public static User IsUserPassCorrect(string username, string password)
         {
             ResetTestUserData();
 
-            return _testUsers.Where(user => user.Username == username && user.Password == password).FirstOrDefault();
+            UserContext context = new UserContext();
+
+            return context.Users.Where(user => user.Username == username && user.Password == password).FirstOrDefault();
         }
 
         public static bool UserExists(string username)
         {
-            return _testUsers.Where(user => user.Username == username).FirstOrDefault() != null;
+            UserContext context = new UserContext();
+
+            return context.Users.Where(user => user.Username == username).FirstOrDefault() != null;
         }
 
         public static void SetUserActiveTo(string username, DateTime date)
         {
+            UserContext context = new UserContext();
+
             Logger.LogActivity(Activities.userActiveToChanged, username);
 
-            _testUsers.Where(user => user.Username == username).FirstOrDefault().ValidUntil = date;
+            context.Users.Where(user => user.Username == username).FirstOrDefault().ValidUntil = date;
+            context.SaveChanges();
         }
 
         public static void AssignUserRole(string username, UserRoles role)
         {
+            UserContext context = new UserContext();
+
             Logger.LogActivity(Activities.userChanged, username);
 
-            _testUsers.Where(user => user.Username == username).FirstOrDefault().Role = (int)role;
+            context.Users.Where(user => user.Username == username).FirstOrDefault().Role = (int)role;
+            context.SaveChanges();
+        }
+
+        public static bool TestUsersIfEmpty()
+        {
+            UserContext context = new UserContext();
+
+            return !context.Users.Any();
+        }
+
+        public static void CopyTestUsers()
+        {
+            UserContext context = new UserContext();
+
+            foreach (User user in TestUsers)
+                context.Users.Add(user);
+
+            context.SaveChanges();
         }
     }
 }
