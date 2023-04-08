@@ -30,5 +30,7 @@
         {RelativeSource AncestorType={x:Type Window}}, Path=ExpenseDataSource}"/>
         <Button x:Name="viewBtn" Margin="0,10,0,0" Width="125" Height="25" HorizontalAlignment="Right" 
                 Grid.Column="1" Grid.Row="3 " Click="viewBtn_Click" Content="{Binding ElementName=peopleListBox, Path=SelectedItem.Name}"/>
+        
+        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Path=LastChecked}"></Label>
     </Grid>
 </Window>
