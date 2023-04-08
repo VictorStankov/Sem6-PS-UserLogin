@@ -9,7 +9,7 @@ namespace ExpenseIt
     public class Person
     {
         public string Name { get; set; }
-        public string Department;
+        public string Department { get; set; }
         public List<Expense> Expenses;
     }
 }

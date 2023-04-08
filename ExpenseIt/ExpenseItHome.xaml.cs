@@ -100,7 +100,7 @@ namespace ExpenseIt
 
         private void viewBtn_Click(object sender, RoutedEventArgs e)
         {
-            ExpenseReport expenseReport = new ExpenseReport
+            ExpenseReport expenseReport = new ExpenseReport(peopleListBox.SelectedItem)
             {
                 Height = Height,
                 Width = Width
