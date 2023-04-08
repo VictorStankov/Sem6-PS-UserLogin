@@ -27,7 +27,13 @@
             <Label VerticalAlignment="Center" Foreground="White">Names</Label>
         </Border>
         <ListBox Name="peopleListBox" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding RelativeSource=
-        {RelativeSource AncestorType={x:Type Window}}, Path=ExpenseDataSource}"/>
+            {RelativeSource AncestorType={x:Type Window}}, Path=ExpenseDataSource}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Path=Name}" FontSize="11"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button x:Name="viewBtn" Margin="0,10,0,0" Width="125" Height="25" HorizontalAlignment="Right" 
                 Grid.Column="1" Grid.Row="3 " Click="viewBtn_Click" Content="{Binding ElementName=peopleListBox, Path=SelectedItem.Name}"/>
         
