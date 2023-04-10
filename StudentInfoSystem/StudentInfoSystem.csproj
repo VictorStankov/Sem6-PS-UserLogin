@@ -68,10 +68,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Grade.cs" />
+    <Compile Include="LoginScreen.xaml.cs">
+      <DependentUpon>LoginScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Student.cs" />
     <Compile Include="StudentData.cs" />
     <Compile Include="StudentInfoContext.cs" />
     <Compile Include="StudentValidation.cs" />
+    <Page Include="LoginScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

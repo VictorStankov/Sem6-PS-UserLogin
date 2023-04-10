@@ -127,7 +127,8 @@ namespace StudentInfoSystem
             }
             else
             {
-                LoadStudent(StudentData.TestStudents.OrderBy(student => student.FacultyNum).First());
+                LoginScreen loginScreen = new LoginScreen(this);
+                loginScreen.ShowDialog();
                 login_logout.Content = "Log out";
                 isLoggedIn = true;
             }
