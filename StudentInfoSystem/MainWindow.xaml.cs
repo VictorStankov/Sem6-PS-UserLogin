@@ -163,6 +163,10 @@ namespace StudentInfoSystem
             {
                 var loginScreen = new LoginScreen(this);
                 loginScreen.ShowDialog();
+                
+                if (string.IsNullOrEmpty(FacultyNum.Text))
+                    return;
+                
                 login_logout.Content = "Log out";
                 _isLoggedIn = true;
             }
