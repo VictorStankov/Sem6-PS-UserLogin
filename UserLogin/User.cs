@@ -23,6 +23,11 @@ namespace UserLogin
             Created = created;
             ValidUntil = validUntil;
         }
+
+        public static implicit operator User(bool v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     

@@ -33,53 +33,55 @@ namespace UserLogin
         {
             ResetTestUserData();
 
-            UserContext context = new UserContext();
-
-            return context.Users.Where(user => user.Username == username && user.Password == password).FirstOrDefault();
+            using (var context = new UserContext())
+                return context.Users.FirstOrDefault(user => user.Username == username && user.Password == password);
         }
 
         public static bool UserExists(string username)
         {
-            UserContext context = new UserContext();
-
-            return context.Users.Where(user => user.Username == username).FirstOrDefault() != null;
+            using (var context = new UserContext())
+                return context.Users.FirstOrDefault(user => user.Username == username) != null;
         }
 
         public static void SetUserActiveTo(string username, DateTime date)
         {
-            UserContext context = new UserContext();
+            using (var context = new UserContext())
+            {
+                Logger.LogActivity(Activities.userActiveToChanged, username);
 
-            Logger.LogActivity(Activities.userActiveToChanged, username);
-
-            context.Users.Where(user => user.Username == username).FirstOrDefault().ValidUntil = date;
-            context.SaveChanges();
+                context.Users.FirstOrDefault(user => user.Username == username).ValidUntil = date;
+                context.SaveChanges();
+            }
         }
 
         public static void AssignUserRole(string username, UserRoles role)
         {
-            UserContext context = new UserContext();
+            using (var context = new UserContext())
+            {
+                Logger.LogActivity(Activities.userChanged, username);
 
-            Logger.LogActivity(Activities.userChanged, username);
-
-            context.Users.Where(user => user.Username == username).FirstOrDefault().Role = (int)role;
-            context.SaveChanges();
+                context.Users.FirstOrDefault(user => user.Username == username).Role = (int)role;
+                context.SaveChanges();
+            }
         }
 
         public static bool TestUsersIfEmpty()
         {
-            UserContext context = new UserContext();
-
-            return !context.Users.Any();
+            using (var context = new UserContext())
+            {
+                return !context.Users.Any();
+            }
         }
 
         public static void CopyTestUsers()
         {
-            UserContext context = new UserContext();
+            using (var context = new UserContext())
+            {
+                foreach (var user in TestUsers)
+                    context.Users.Add(user);
 
-            foreach (User user in TestUsers)
-                context.Users.Add(user);
-
-            context.SaveChanges();
+                context.SaveChanges();
+            }
         }
     }
 }

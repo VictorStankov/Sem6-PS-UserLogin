@@ -28,45 +28,45 @@ namespace StudentInfoSystem
             _testStudents.Add(new Student(1, "Georgi", "Georgiev", "Georgiev", "FPMI", "PF", "bachelor", 2, 2, 2, 2, 2));
         }
 
-        public static Student IsThereStudent(int facNum)
+        public static Student StudentExists(int facNum)
         {
-            StudentInfoContext context = new StudentInfoContext();
-
-            return context.Students.Where(st => st.FacultyNum == facNum).FirstOrDefault();
+            using (var context = new StudentInfoContext())
+                return context.Students.FirstOrDefault(st => st.FacultyNum == facNum);
         }
 
         private static List<Student> GetStudents()
         {
-            StudentInfoContext context = new StudentInfoContext();
-            return context.Students.ToList();
+            using(var context = new StudentInfoContext())
+                return context.Students.ToList();
         }
 
 
         public static bool TestStudentsIfEmpty()
         {
-            StudentInfoContext context = new StudentInfoContext();
-
-            return !context.Students.Any();
+            using(var context = new StudentInfoContext())
+                return !context.Students.Any();
         }
 
         public static void CopyTestStudents()
         {
-            StudentInfoContext context = new StudentInfoContext();
+            using (var context = new StudentInfoContext())
+            {
+                foreach (Student st in TestStudents)
+                    context.Students.Add(st);
 
-            foreach (Student st in TestStudents)
-                context.Students.Add(st);
-
-            context.SaveChanges();
+                context.SaveChanges();
+            }
         }
 
         public static void DeleteStudent(int facNum)
         {
-            StudentInfoContext context = new StudentInfoContext();
+            using (var context = new StudentInfoContext())
+            {
+                Student studentDel = context.Students.FirstOrDefault(student => student.FacultyNum == facNum);
 
-            Student studentDel = context.Students.Where(student => student.FacultyNum == facNum).FirstOrDefault();
-
-            context.Students.Remove(studentDel);
-            context.SaveChanges();
+                context.Students.Remove(studentDel);
+                context.SaveChanges();
+            }
         }
     }
 }

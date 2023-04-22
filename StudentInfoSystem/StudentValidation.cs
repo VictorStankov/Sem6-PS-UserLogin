@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace StudentInfoSystem
 {
-    class StudentValidation
+    static class StudentValidation
     {
-        public Student GetStudentDataByUser(User user)
+        public static Student GetStudentDataByUser(User user)
         {
             return (from student in StudentData.TestStudents where student.FacultyNum == user.FacultyNum select student).FirstOrDefault();
         }

@@ -13,11 +13,12 @@ namespace UserLogin
         // Rather it is used to log the name of the user whose information has been changed.
         public static void LogActivity(Activities activity, string username="")
         {
-            LoggerContext context = new LoggerContext();
-
-            context.Logs.Add(new LogEvent(LoginValidation.CurrentUserUsername, GetActivityDescription(activity), username, DateTime.UtcNow));
-            context.SaveChanges();
-
+            using (var context = new UserContext())
+            {
+                context.Logs.Add(new LogEvent(LoginValidation.CurrentUserUsername, GetActivityDescription(activity), username, DateTime.UtcNow));
+                context.SaveChanges();
+            }
+            
             string activityLine = $"{DateTime.Now};{LoginValidation.CurrentUserUsername};" +
                 $"{LoginValidation.CurrentUserRole};{GetActivityDescription(activity)};{username}\n";
 

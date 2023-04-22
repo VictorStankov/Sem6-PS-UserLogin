@@ -6,6 +6,7 @@ namespace UserLogin
     class UserContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<LogEvent> Logs { get; set; }
 
         public UserContext() : base(ConfigurationManager.ConnectionStrings["DbConnection"].ToString())
         {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace UserLogin
+﻿namespace UserLogin
 {
     public class LoginValidation
     {
@@ -17,9 +15,9 @@ namespace UserLogin
 
         public LoginValidation(string username, string password, ActionOnError errorfunc)
         {
-            this._username = username;
-            this._password = password;
-            this._errorfunc = errorfunc;
+            _username = username;
+            _password = password;
+            _errorfunc = errorfunc;
         }
         
         public bool ValidateUserInput(ref User user)
