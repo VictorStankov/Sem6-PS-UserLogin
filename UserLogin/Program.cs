@@ -7,23 +7,17 @@ namespace UserLogin
     {
         static void Main(string[] args)
         {
-            string username, password;
-
             if (UserData.TestUsersIfEmpty())
                 UserData.CopyTestUsers();
 
             Console.Write("Enter username: ");
-            username = Console.ReadLine();
+            string username = Console.ReadLine();
             Console.Write("Enter password: ");
-            password = Console.ReadLine();
+            string password = Console.ReadLine();
 
-            var val = new LoginValidation(username, password, new LoginValidation.ActionOnError(PrintError));
+            var val = new LoginValidation(username, password, PrintError);
 
             User user = null;
-
-            //if (val.ValidateUserInput(ref user))
-            //    Console.WriteLine($"{user.username} {user.password} {user.faculty_num} {user.role} " +
-            //        $"{user.created.ToLocalTime()} {user.validUntil.ToLocalTime()}");
 
             val.ValidateUserInput(ref user);
 
@@ -47,7 +41,7 @@ namespace UserLogin
             }
         }
 
-        public static void PrintError(string errorMsg)
+        private static void PrintError(string errorMsg)
         {
             Console.WriteLine($"!!! {errorMsg} !!!");
         }
@@ -65,13 +59,13 @@ namespace UserLogin
                 UserRoles role;
             
                 string choice = Console.ReadLine();
-                if (String.IsNullOrEmpty(choice) || choice.Length > 1)
+                if (string.IsNullOrEmpty(choice) || choice.Length > 1)
                 {
                     Console.WriteLine("Invalid Choice!");
                     continue;
                 }
                 
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
 
                 switch (choice[0])
                 {
@@ -86,13 +80,13 @@ namespace UserLogin
                             break;
                         }
 
-                        Console.WriteLine($"\nAvailable Roles:");
+                        Console.WriteLine("\nAvailable Roles:");
                         foreach (UserRoles a in Enum.GetValues(typeof(UserRoles)))
                             Console.Write($"{a}  ");
 
                         Console.Write("\nEnter new role's name: ");
                         string roleStr = Console.ReadLine();
-                        if (String.IsNullOrEmpty(roleStr) || !Enum.TryParse(roleStr.ToUpper(), out role))
+                        if (string.IsNullOrEmpty(roleStr) || !Enum.TryParse(roleStr.ToUpper(), out role))
                         {
                             Console.WriteLine("Invalid Role Name!");
                             break;

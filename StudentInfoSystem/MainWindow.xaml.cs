@@ -13,7 +13,7 @@ namespace StudentInfoSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool isLoggedIn = false;
+        private bool _isLoggedIn = false;
 
         public MainWindow()
         {
@@ -27,21 +27,31 @@ namespace StudentInfoSystem
             Status.ItemsSource = StudStatusChoices;
         }
 
-        public List<string> StudStatusChoices { get; set; }
+        private List<string> StudStatusChoices { get; set; }
 
-        public void ClearAllInputs()
+        private void ClearAllInputs()
         {
-            foreach (object field in PersonalDetails.Children)
-                if (field is TextBox textBox)
-                    textBox.Clear();
-                else if (field is ComboBox comboBox)
-                    comboBox.SelectedItem = null;
+            foreach (var field in PersonalDetails.Children)
+                switch (field)
+                {
+                    case TextBox textBox:
+                        textBox.Clear();
+                        break;
+                    case ComboBox comboBox:
+                        comboBox.SelectedItem = null;
+                        break;
+                }
 
-            foreach (object field in StudentInformation.Children)
-                if (field is TextBox textBox)
-                    textBox.Clear();
-                else if (field is ComboBox comboBox)
-                    comboBox.SelectedItem = null;
+            foreach (var field in StudentInformation.Children)
+                switch (field)
+                {
+                    case TextBox textBox:
+                        textBox.Clear();
+                        break;
+                    case ComboBox comboBox:
+                        comboBox.SelectedItem = null;
+                        break;
+                }
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -69,23 +79,35 @@ namespace StudentInfoSystem
             LoadStudent(StudentData.TestStudents[0]);
         }
 
-        public void SetInputsInactive()
+        private void SetInputsInactive()
         {
-            foreach (object field in PersonalDetails.Children)
-                if (field is TextBox textBox)
-                    textBox.IsEnabled = false;
-                else if (field is ComboBox comboBox)
-                    comboBox.IsEnabled = false;
-                else if (field is Button button)
-                    button.IsEnabled = false;
+            foreach (var field in PersonalDetails.Children)
+                switch (field)
+                {
+                    case TextBox textBox:
+                        textBox.IsEnabled = false;
+                        break;
+                    case ComboBox comboBox:
+                        comboBox.IsEnabled = false;
+                        break;
+                    case Button button:
+                        button.IsEnabled = false;
+                        break;
+                }
 
-            foreach (object field in StudentInformation.Children)
-                if (field is TextBox textBox)
-                    textBox.IsEnabled = false;
-                else if (field is ComboBox comboBox)
-                    comboBox.IsEnabled = false;
-                else if (field is Button button)
-                    button.IsEnabled = false;
+            foreach (var field in StudentInformation.Children)
+                switch (field)
+                {
+                    case TextBox textBox:
+                        textBox.IsEnabled = false;
+                        break;
+                    case ComboBox comboBox:
+                        comboBox.IsEnabled = false;
+                        break;
+                    case Button button:
+                        button.IsEnabled = false;
+                        break;
+                }
         }
 
         private void SetInactive_Click(object sender, RoutedEventArgs e)
@@ -93,23 +115,35 @@ namespace StudentInfoSystem
             SetInputsInactive();
         }
 
-        public void SetInputsActive()
+        private void SetInputsActive()
         {
-            foreach (object field in PersonalDetails.Children)
-                if (field is TextBox textBox)
-                    textBox.IsEnabled = true;
-                else if (field is ComboBox comboBox)
-                    comboBox.IsEnabled = true;
-                else if (field is Button button)
-                    button.IsEnabled = true;
+            foreach (var field in PersonalDetails.Children)
+                switch (field)
+                {
+                    case TextBox textBox:
+                        textBox.IsEnabled = true;
+                        break;
+                    case ComboBox comboBox:
+                        comboBox.IsEnabled = true;
+                        break;
+                    case Button button:
+                        button.IsEnabled = true;
+                        break;
+                }
 
-            foreach (object field in StudentInformation.Children)
-                if (field is TextBox textBox)
-                    textBox.IsEnabled = true;
-                else if (field is ComboBox comboBox)
-                    comboBox.IsEnabled = true;
-                else if (field is Button button)
-                    button.IsEnabled = true;
+            foreach (var field in StudentInformation.Children)
+                switch (field)
+                {
+                    case TextBox textBox:
+                        textBox.IsEnabled = true;
+                        break;
+                    case ComboBox comboBox:
+                        comboBox.IsEnabled = true;
+                        break;
+                    case Button button:
+                        button.IsEnabled = true;
+                        break;
+                }
         }
 
         private void SetActive_Click(object sender, RoutedEventArgs e)
@@ -119,18 +153,18 @@ namespace StudentInfoSystem
 
         private void login_logout_Click(object sender, RoutedEventArgs e)
         {
-            if (isLoggedIn)
+            if (_isLoggedIn)
             {
                 ClearAllInputs();
                 login_logout.Content = "Log in";
-                isLoggedIn = false;
+                _isLoggedIn = false;
             }
             else
             {
-                LoginScreen loginScreen = new LoginScreen(this);
+                var loginScreen = new LoginScreen(this);
                 loginScreen.ShowDialog();
                 login_logout.Content = "Log out";
-                isLoggedIn = true;
+                _isLoggedIn = true;
             }
         }
 
@@ -157,26 +191,26 @@ namespace StudentInfoSystem
             }
         }
 
-        private void AddStudentGrade(int FacNum, string className, int gradeNum)
+        private void AddStudentGrade(int facNum, string className, int gradeNum)
         {
-            StudentInfoContext context = new StudentInfoContext();
-
-            Student student = context.Students.Where(st => st.FacultyNum == FacNum).First();
-
-            if (student != null)
+            using (var context = new StudentInfoContext())
             {
-                context.Grades.Add(new Grade(student, className, gradeNum));
-                context.SaveChanges();
+                Student student = context.Students.First(st => st.FacultyNum == facNum);
+
+                if (student != null)
+                {
+                    context.Grades.Add(new Grade(student, className, gradeNum));
+                    context.SaveChanges();
+                }
             }
         }
 
         private void SubmitGrade_Click(object sender, RoutedEventArgs e)
         {
-            int facNum, gradeNum;
-            if (!int.TryParse(GradeNum.Text, out gradeNum))
+            if (!int.TryParse(GradeNum.Text, out int gradeNum))
                 return;
 
-            if (int.TryParse(FacultyNum.Text, out facNum))
+            if (int.TryParse(FacultyNum.Text, out int facNum))
             {
                 AddStudentGrade(facNum, SubjectName.Text, gradeNum);
             }
