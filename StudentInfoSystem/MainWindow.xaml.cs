@@ -85,6 +85,9 @@ namespace StudentInfoSystem
                 
                 LoginLogout.Content = "Log out";
                 _isLoggedIn = true;
+                
+                if (tabNum == 1)
+                    LoadStudentGrades();
             }
         }
 
