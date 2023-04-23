@@ -15,4 +15,16 @@
             GradeNum = gradeNum;
         }
     }
+
+    struct GradeShort
+    {
+        public int Grade { get; set; }
+        public string ClassName { get; set; }
+
+        public GradeShort(int grade, string className)
+        {
+            Grade = grade;
+            ClassName = className;
+        }
+    }
 }
