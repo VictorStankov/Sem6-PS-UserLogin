@@ -10,39 +10,65 @@
                   HorizontalAlignment="Stretch" >
             <Grid x:Name="PersonalDetails">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.53*"/>
+                    <ColumnDefinition Width="0.5*"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                
-                <Label Content="Име:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" />
-                <Label Content="Презиме:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" />
-                <Label Content="Фамилия:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" />
-                <TextBox x:Name="FirstName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
-                         VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" />
-                <TextBox x:Name="MiddleName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
-                         VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" />
-                <TextBox x:Name="LastName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
-                         VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" />
-                
-                <Label Content="Оценка:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="2" Grid.Row="0" />
-                <ComboBox x:Name="GradeNum" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="3" Grid.Row="0">
-                    <ComboBoxItem Content="2"/>
-                    <ComboBoxItem Content="3"/>
-                    <ComboBoxItem Content="4"/>
-                    <ComboBoxItem Content="5"/>
-                    <ComboBoxItem Content="6"/>
-                </ComboBox>
-                <Label Content="Предмет:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="2" Grid.Row="1" />
-                <TextBox x:Name="SubjectName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
-                         VerticalAlignment="Center" Grid.Column="3" Grid.Row="1" />
-                <Button x:Name="SubmitGrade" Content="Submit Grade" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Click="SubmitGrade_Click" Grid.Column="3" Grid.Row="2"/>
+
+                <Grid Grid.Column="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Име:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0" />
+                        <Label Content="Презиме:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" />
+                        <Label Content="Фамилия:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" />
+                        <TextBox x:Name="FirstName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
+                                 VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" />
+                        <TextBox x:Name="MiddleName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
+                                 VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" />
+                        <TextBox x:Name="LastName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
+                                 VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" />
+                    </Grid>
+                </Grid>
+                <TabControl x:Name="TabControl" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,0,0,0" SelectionChanged="Selector_OnSelectionChanged">
+                    <TabItem Header="Submit Grade">
+                        <Grid Background="#FFE5E5E5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Оценка:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="0" Grid.Row="0" />
+                            <ComboBox x:Name="GradeNum" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="0">
+                                <ComboBoxItem Content="2"/>
+                                <ComboBoxItem Content="3"/>
+                                <ComboBoxItem Content="4"/>
+                                <ComboBoxItem Content="5"/>
+                                <ComboBoxItem Content="6"/>
+                            </ComboBox>
+                            <Label Content="Предмет:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="0" Grid.Row="1" />
+                            <TextBox x:Name="SubjectName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
+                                     VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" />
+                            <Button x:Name="SubmitGrade" Content="Submit Grade" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Click="SubmitGrade_Click" Grid.Column="1" Grid.Row="2"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Grades">
+                        <Grid Background="#FFE5E5E5">
+                            <DataGrid x:Name="GradeGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="True"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+
             </Grid>
         </GroupBox>
 
