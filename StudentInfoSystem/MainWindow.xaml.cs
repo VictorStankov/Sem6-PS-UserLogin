@@ -14,6 +14,7 @@ namespace StudentInfoSystem
     public partial class MainWindow : Window
     {
         private bool _isLoggedIn = false;
+        private int tabNum;  // Used for when the "Grades" tab is open right after logging in
 
         public MainWindow()
         {
@@ -133,6 +134,44 @@ namespace StudentInfoSystem
             {
                 AddStudentGrade(facNum, SubjectName.Text, gradeNum);
             }
+        }
+
+        private void LoadStudentGrades()
+        {
+            GradeGrid.ItemsSource = null;
+            GradeGrid.Items.Clear();
+                
+            if (!_isLoggedIn)
+                return;
+                
+            var grades = GetUserGrades(int.Parse(FacultyNum.Text));
+            GradeGrid.ItemsSource = grades;
+        }
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tabNum = TabControl.SelectedIndex;
+            if (tabNum == 1)
+            {
+                LoadStudentGrades();
+            }
+        }
+
+        private List<GradeShort> GetUserGrades(int facNum)
+        {
+            List<GradeShort> result = new List<GradeShort>();
+            using (var context = new StudentInfoContext())
+            {
+                Student student = context.Students.First(st => st.FacultyNum == facNum);
+
+                if (student != null)
+                {
+                    var a = context.Grades.Where(grade => grade.Student.StudentId == student.StudentId).Select(grade => new {grade.GradeNum, grade.ClassName}).ToList();
+                    result.AddRange(a.Select(grade => new GradeShort(grade.GradeNum, grade.ClassName)));
+                }
+            }
+
+            return result;
         }
     }
 }
