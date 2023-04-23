@@ -29,36 +29,6 @@ namespace StudentInfoSystem
 
         private List<string> StudStatusChoices { get; set; }
 
-        private void ClearAllInputs()
-        {
-            foreach (var field in PersonalDetails.Children)
-                switch (field)
-                {
-                    case TextBox textBox:
-                        textBox.Clear();
-                        break;
-                    case ComboBox comboBox:
-                        comboBox.SelectedItem = null;
-                        break;
-                }
-
-            foreach (var field in StudentInformation.Children)
-                switch (field)
-                {
-                    case TextBox textBox:
-                        textBox.Clear();
-                        break;
-                    case ComboBox comboBox:
-                        comboBox.SelectedItem = null;
-                        break;
-                }
-        }
-
-        private void Clear_Click(object sender, RoutedEventArgs e)
-        {
-            ClearAllInputs();
-        }
-
         public void LoadStudent(Student student)
         {
             FirstName.Text = student.FirstName;
@@ -74,89 +44,12 @@ namespace StudentInfoSystem
             Group.Text = student.Group.ToString();
         }
 
-        private void LoadTestStudent_Click(object sender, RoutedEventArgs e)
-        {
-            LoadStudent(StudentData.TestStudents[0]);
-        }
-
-        private void SetInputsInactive()
-        {
-            foreach (var field in PersonalDetails.Children)
-                switch (field)
-                {
-                    case TextBox textBox:
-                        textBox.IsEnabled = false;
-                        break;
-                    case ComboBox comboBox:
-                        comboBox.IsEnabled = false;
-                        break;
-                    case Button button:
-                        button.IsEnabled = false;
-                        break;
-                }
-
-            foreach (var field in StudentInformation.Children)
-                switch (field)
-                {
-                    case TextBox textBox:
-                        textBox.IsEnabled = false;
-                        break;
-                    case ComboBox comboBox:
-                        comboBox.IsEnabled = false;
-                        break;
-                    case Button button:
-                        button.IsEnabled = false;
-                        break;
-                }
-        }
-
-        private void SetInactive_Click(object sender, RoutedEventArgs e)
-        {
-            SetInputsInactive();
-        }
-
-        private void SetInputsActive()
-        {
-            foreach (var field in PersonalDetails.Children)
-                switch (field)
-                {
-                    case TextBox textBox:
-                        textBox.IsEnabled = true;
-                        break;
-                    case ComboBox comboBox:
-                        comboBox.IsEnabled = true;
-                        break;
-                    case Button button:
-                        button.IsEnabled = true;
-                        break;
-                }
-
-            foreach (var field in StudentInformation.Children)
-                switch (field)
-                {
-                    case TextBox textBox:
-                        textBox.IsEnabled = true;
-                        break;
-                    case ComboBox comboBox:
-                        comboBox.IsEnabled = true;
-                        break;
-                    case Button button:
-                        button.IsEnabled = true;
-                        break;
-                }
-        }
-
-        private void SetActive_Click(object sender, RoutedEventArgs e)
-        {
-            SetInputsActive();
-        }
-
         private void login_logout_Click(object sender, RoutedEventArgs e)
         {
             if (_isLoggedIn)
             {
                 ClearAllInputs();
-                login_logout.Content = "Log in";
+                LoginLogout.Content = "Log in";
                 _isLoggedIn = false;
             }
             else
@@ -167,7 +60,7 @@ namespace StudentInfoSystem
                 if (string.IsNullOrEmpty(FacultyNum.Text))
                     return;
                 
-                login_logout.Content = "Log out";
+                LoginLogout.Content = "Log out";
                 _isLoggedIn = true;
             }
         }
