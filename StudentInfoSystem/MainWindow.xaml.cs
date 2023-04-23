@@ -43,12 +43,34 @@ namespace StudentInfoSystem
             Stream.Text = student.Stream.ToString();
             Group.Text = student.Group.ToString();
         }
+        
+        private void ClearInputs(DependencyObject control)
+        {
+            foreach (var obj in LogicalTreeHelper.GetChildren(control).OfType<Control>())
+            {
+                switch (obj)
+                {
+                    case TextBox textBox:
+                        textBox.Clear();
+                        break;
+                    case ComboBox comboBox:
+                        comboBox.SelectedItem = null;
+                        break;
+                    case DataGrid dataGrid:
+                        dataGrid.ItemsSource = null;
+                        break;
+                }
+            }
+
+            foreach (var dependencyObject in LogicalTreeHelper.GetChildren(control).OfType<DependencyObject>())
+                ClearInputs(dependencyObject);
+        }
 
         private void login_logout_Click(object sender, RoutedEventArgs e)
         {
             if (_isLoggedIn)
             {
-                ClearAllInputs();
+                ClearInputs(MainGrid);
                 LoginLogout.Content = "Log in";
                 _isLoggedIn = false;
             }
