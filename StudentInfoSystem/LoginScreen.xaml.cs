@@ -3,9 +3,6 @@ using UserLogin;
 
 namespace StudentInfoSystem
 {
-    /// <summary>
-    /// Interaction logic for LoginScreen.xaml
-    /// </summary>
     public partial class LoginScreen : Window
     {
         public string Username { get; set; }
@@ -23,7 +20,6 @@ namespace StudentInfoSystem
             InitializeComponent();
             mainWindow = (MainWindow)caller;
         }
-        
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
