@@ -23,7 +23,7 @@ namespace StudentInfoSystem
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var user = UserData.IsUserPassCorrect(Username, Password);
+            var user = UserData.IsUserPassCorrect(Username, passwordBox.Password);
             if (user == null)
             {
                 MessageBox.Show("Invalid credentials!");
