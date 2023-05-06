@@ -26,5 +26,10 @@
             Grade = grade;
             ClassName = className;
         }
+
+        public override string ToString()
+        {
+            return $"{ClassName} - {Grade}";
+        }
     }
 }
