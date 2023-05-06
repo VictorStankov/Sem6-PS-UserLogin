@@ -59,7 +59,7 @@
                             <Label Content="Предмет:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Column="0" Grid.Row="1" />
                             <TextBox x:Name="SubjectName" HorizontalAlignment="Stretch" TextWrapping="Wrap"
                                      VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" />
-                            <Button x:Name="SubmitGrade" Content="Submit Grade" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Click="SubmitGrade_Click" Grid.Column="1" Grid.Row="2"/>
+                            <Button x:Name="SubmitGrade" Content="Submit Grade" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Click="SubmitGrade_Click" Grid.Column="1" Grid.Row="2" IsEnabled="False"/>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Grades">
