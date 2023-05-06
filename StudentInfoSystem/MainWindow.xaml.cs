@@ -2,7 +2,9 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -172,6 +174,33 @@ namespace StudentInfoSystem
             }
 
             return result;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            var fileDialog = new Microsoft.Win32.SaveFileDialog
+            {
+                DefaultExt = ".txt",
+                Filter = "Text documents (.txt)|*.txt",
+                Title = "Save Student Information"
+            };
+
+            var result = fileDialog.ShowDialog();
+
+            if (result != true)
+                return;
+            
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append($"Лична Информация:\nИме:\t\t{FirstName.Text}\nПрезиме:\t{MiddleName.Text}\n" +
+                                 $"Фамилия:\t{LastName.Text}\n\nСтудентска Информация:\nФакултет:\t\t{Faculty.Text}\n" +
+                                 $"Специалност:\t{Specialty.Text}\nОКС:\t\t\t{Degree.Text}\nСтатус:\t\t{Status.Text}\n" +
+                                 $"Факултетен номер:\t{FacultyNum.Text}\nКурс:\t\t\t{Year.Text}\nПоток:\t\t{Stream.Text}\n" +
+                                 $"Група:\t\t{Group.Text}\n\nОценки:\n");
+
+            foreach (GradeShort grade in GetUserGrades(int.Parse(FacultyNum.Text)))
+                stringBuilder.Append(grade + "\n");
+
+            File.WriteAllText(fileDialog.FileName, stringBuilder.ToString());
         }
     }
 }

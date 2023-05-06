@@ -109,6 +109,7 @@
         
         <Button x:Name="LoginLogout" Content="Log in" HorizontalAlignment="Left" Margin="568,347,0,0"
                 VerticalAlignment="Top" Width="75" Click="login_logout_Click" />
+        <Button x:Name="SaveButton" Content="Save to File" HorizontalAlignment="Left" Margin="688,347,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click" IsEnabled="False"/>
 
     </Grid>
 </Window>
