@@ -72,7 +72,7 @@ namespace StudentInfoSystem
             {
                 ClearInputs(MainGrid);
                 LoginLogout.Content = "Log in";
-                _isLoggedIn = false;
+                _isLoggedIn = SaveButton.IsEnabled = false;
             }
             else
             {
@@ -83,7 +83,7 @@ namespace StudentInfoSystem
                     return;
                 
                 LoginLogout.Content = "Log out";
-                _isLoggedIn = true;
+                _isLoggedIn = SaveButton.IsEnabled = true;
                 
                 if (tabNum == 1)
                     LoadStudentGrades();
